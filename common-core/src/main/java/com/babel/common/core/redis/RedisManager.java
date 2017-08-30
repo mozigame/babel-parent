@@ -24,8 +24,8 @@ public class RedisManager {
     @Value("${redis.maxWait}")
     private int maxWait;
     
-    @Value("${redis.password}")
-    private String password;
+//    @Value("${redis.password}")
+//    private String password;
  
     // 0 - never expire
     private int expire = 0;
@@ -46,7 +46,7 @@ public class RedisManager {
         }
         if(jedisPool == null){
             //jedisPool = JedisUtil.getJedisPool();
-            jedisPool = new JedisPool(new JedisPoolConfig(), host, port, maxWait, password, database);
+            jedisPool = new JedisPool(new JedisPoolConfig(), host, port, maxWait);
         }
     }
     
