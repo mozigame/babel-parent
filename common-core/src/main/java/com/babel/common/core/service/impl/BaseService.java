@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.babel.common.core.entity.BaseEntity;
 import com.babel.common.core.entity.BaseEntitySimple;
+import com.babel.common.core.entity.BaseEntityTimestamp;
 import com.babel.common.core.page.PageVO;
 import com.babel.common.core.service.IBaseService;
 import com.github.pagehelper.PageHelper;
@@ -101,7 +102,7 @@ public abstract class BaseService<T> implements IBaseService<T> {
     }
     
     public Integer deleteVirtual(T entity) throws Exception{
-    	if(entity instanceof BaseEntitySimple){
+    	if(entity instanceof BaseEntitySimple||entity instanceof BaseEntityTimestamp){
     		BaseEntitySimple dataEntity=(BaseEntitySimple)entity;
     		if(dataEntity.getCid()==null||dataEntity.getCid().intValue()==0){
     			throw new Exception("PrimaryKey cid is empty");
