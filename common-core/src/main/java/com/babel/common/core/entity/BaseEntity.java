@@ -1,14 +1,6 @@
 package com.babel.common.core.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 public abstract class BaseEntity extends BaseEntitySimple implements Serializable {
