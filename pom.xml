@@ -45,7 +45,7 @@
 		<!-- frameworks -->
 		<org.springframework.version>4.2.5.RELEASE</org.springframework.version>
 		<mybatis.version>3.3.1</mybatis.version>
-		<mapper.version>3.4.2</mapper.version>
+		<mapper.version>3.4.0-babel</mapper.version>
 		<pagehelper.version>4.1.4</pagehelper.version>
 		<commons-lang.version>3.1</commons-lang.version>
 
