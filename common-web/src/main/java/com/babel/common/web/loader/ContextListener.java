@@ -30,8 +30,8 @@ public class ContextListener implements ServletContextListener {
 //		String protocol=ServletActionContext.getRequest().getProtocol();
 		String contextTaskBeanName=ConfigWebUtil.getConfigValue("contextTaskBeanName");
 		log4.info("-------serverInfo="+event.getServletContext().getServerInfo()+" contextTaskBeanName="+contextTaskBeanName);
-		String contextPath=event.getServletContext().getContextPath();
-		log4.info("-------contextPath="+contextPath);
+//		String contextPath=event.getServletContext().getContextPath();
+//		log4.info("-------contextPath="+contextPath);
 		
 		if(!CommMethod.isEmpty(contextTaskBeanName)) {
 			

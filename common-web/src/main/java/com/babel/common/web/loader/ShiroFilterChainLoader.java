@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.babel.common.core.data.RetResult;
 import com.babel.common.core.util.ServerUtil;
-import com.babel.common.core.util.XmlUtil;
 
 /**
  * 用于将spring-security的shiroFilter.filterChainDefinitions读入内存
@@ -36,25 +35,25 @@ public class ShiroFilterChainLoader  implements IContextTaskLoader {
 			this.log.info("-----load initFilterChain--start--");
 			long time=System.currentTimeMillis();
 			ServerUtil.filterChainMap=new LinkedHashMap<>();
-			String shiroFilter=XmlUtil.loadSpringXml(fileName, beanId, propertyName);
-			if(shiroFilter!=null){
-				shiroFilter=shiroFilter.trim();
-				String[] filters=shiroFilter.split("\n");
-				String key=null;
-				String value=null;
-				for(String filter:filters){
-					filter=filter.trim();
-					int index=filter.indexOf("=");
-					if(index>0){
-						key=filter.substring(0, index);
-						key=key.trim();
-						value=filter.substring(index+1);
-						value=value.trim();
-						ServerUtil.filterChainMap.put(key, value);
-					}
-				}
-			}
-			this.log.info("-----load initFilterChain--filterChainMapSize="+ServerUtil.filterChainMap.size()+" time="+(System.currentTimeMillis()-time));
+//			String shiroFilter=XmlUtil.loadSpringXml(fileName, beanId, propertyName);
+//			if(shiroFilter!=null){
+//				shiroFilter=shiroFilter.trim();
+//				String[] filters=shiroFilter.split("\n");
+//				String key=null;
+//				String value=null;
+//				for(String filter:filters){
+//					filter=filter.trim();
+//					int index=filter.indexOf("=");
+//					if(index>0){
+//						key=filter.substring(0, index);
+//						key=key.trim();
+//						value=filter.substring(index+1);
+//						value=value.trim();
+//						ServerUtil.filterChainMap.put(key, value);
+//					}
+//				}
+//			}
+//			this.log.info("-----load initFilterChain--filterChainMapSize="+ServerUtil.filterChainMap.size()+" time="+(System.currentTimeMillis()-time));
 		}
 	}
 }

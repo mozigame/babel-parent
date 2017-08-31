@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.ServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -47,7 +47,7 @@ public class PageVO<T> implements IPageVO<T>, java.io.Serializable{
 		
 	}
 	
-	public PageVO(HttpServletRequest request){
+	public PageVO(ServletRequest request){
 		Enumeration<String> names= request.getParameterNames();
 		String name=null;
 		paramMap=new HashMap<>();
