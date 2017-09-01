@@ -16,13 +16,12 @@
         <version>1.5.4.RELEASE</version>
         <relativePath/>
     </parent>
-
 	<modules>
 		<module>common-core</module>
 		<module>common-web</module>
 		<module>common-config</module>
 	</modules>
-
+	
 
 
 	<properties>
@@ -386,6 +385,21 @@
 		</plugins>
 	</build>
 	<distributionManagement>
+		<!-- -->
+		<repository>
+			<id>releases</id>
+			<uniqueVersion>true</uniqueVersion>
+			<name>Internal Release Repository</name>
+			<url>http://192.168.0.253:8081/nexus/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>releases</id>
+			<uniqueVersion>true</uniqueVersion>
+			<name>Internal Snapshot Repository</name>
+			<url>http://192.168.0.253:8081/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+		
+		<!-- 
 		<repository>
 			<id>releases</id>
 			<uniqueVersion>true</uniqueVersion>
@@ -398,6 +412,7 @@
 			<name>Internal Snapshot Repository</name>
 			<url>http://maven.blr58589.com/nexus/content/repositories/snapshots</url>
 		</snapshotRepository>
+		-->
 		<site>
 			<id>maven-doc</id>
 			<url>file:///apps/wiki/maven/</url>

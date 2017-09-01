@@ -9,6 +9,12 @@ public class RetException  extends Exception {
 		this.ret=ret;
 	}
 	
+	public RetException(Exception cause){
+		super(cause);
+		this.ret=new RetResult().initErrorForUnknown(cause);
+	}
+	
+	
 	public RetException(RetResult ret, Throwable cause){
 		super(ret.getMsgCode()+":"+ret.getMsgBody(), cause);
 		this.ret=ret;

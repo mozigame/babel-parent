@@ -2,13 +2,13 @@ package com.babel.common.core.data;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
+import org.apache.log4j.Logger;
 import org.springframework.util.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,7 +18,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlRootElement(name="retResult")
 @XmlType
 @JsonInclude(Include.NON_NULL)
-public class RetResult<T> implements java.io.Serializable{
+public class RetResult<T> implements IRetResult<T>, java.io.Serializable{
+	private static final Logger logger = Logger.getLogger(RetResult.class);
 	/**
 	 * 
 	 */
@@ -43,11 +44,11 @@ public class RetResult<T> implements java.io.Serializable{
 		ERR_DATA_INVALID         ("ERR_DATA_INVALID", "数据无效", "data invalid"),
 		ERR_DATA_NOT_FOUND          ("ERR_DATA_NOT_FOUND", "数据未找到", "data not found"),
 		ERR_DATA_MAX_LENGTH          ("ERR_DATA_MAX_LENGTH", "超出数据最大长度", "data out max length"),
-		ERR_DATA_OPERATE          ("ERR_DATA_OPERATE", "无效操作", "Error operate"),
 		ERR_DELETE_ERROR          ("ERR_DELETE_ERROR", "删除数据失败,请先删除其相关的数据", "delete error"),
 		ERR_LOGIN_INVALID_ESB ("ERR_LOGIN_INVALID_ESB", "ESB帐户或密码无效", "invalid ESB login"),
 		ERR_LOGIN_INVALID_ACCOUNT ("ERR_LOGIN_INVALID_ACCOUNT", "帐号不存在", "invalid account"),
 		ERR_LOGIN_INVALID_PASSWORD("ERR_LOGIN_INVALID_PASSWORD", "密码错误", "invalid password"),
+		ERR_INVALID_OPERATE("ERR_INVALID_OPERATE", "无效操作", "invalid operate"),
 		ERR_PERMISSION_DENIED     ("ERR_PERMISSION_DENIED", "权限不足", "permission denied"),
 		ERR_SERVER_CONNECTED      ("ERR_SERVER_CONNECTED", "系统连接失败，请联系管理员", "server connect error!"),
 		ERR_UNKNOWN                ("ERR_UNKNOWN", "未知错误", "unknown error!"),
@@ -91,7 +92,18 @@ public class RetResult<T> implements java.io.Serializable{
 	protected String msgCode;
 	protected String msgBody;
 	protected Exception exception;
-	
+	public RetResult<T> initErrorForInput(String msgBody){
+		this.flag=1;
+		this.msgCode=msg_codes.ERR_DATA_INPUT.code;
+		this.msgBody=msgBody;
+		return this;
+	}
+	public RetResult<T> initErrorForUnknown(Exception e){
+		this.flag=1;
+		this.msgCode=msg_codes.ERR_UNKNOWN.code;
+		this.msgBody=e.getMessage();
+		return this;
+	}
 	public RetResult<T> initError(String msgCode, String msgBody, Exception e){
 		this.flag=1;
 		this.msgCode=msgCode;
@@ -104,6 +116,14 @@ public class RetResult<T> implements java.io.Serializable{
 		return this;
 	}
 	
+//	public RetResult<T> initErrorExp(String msgCode, String msgBody, Exception e) throws Exception{
+//		RetResult<T> ret=initError(msgCode, msgBody, e);
+//		if(e!=null){
+//			throw new RetException(ret);
+//		}
+//		return ret;
+//	}
+	
 	public RetResult<T> initError(msg_codes msg_code, String msgBody, Exception e){
 		this.flag=1;
 		this.msgCode=msg_code.getCode();
@@ -115,6 +135,14 @@ public class RetResult<T> implements java.io.Serializable{
 		}
 		return initError(msgCode, msgBody, e);
 	}
+	
+//	public RetResult<T> initErrorExp(msg_codes msg_code, String msgBody, Exception e) throws Exception{
+//		RetResult<T> ret=initError(msg_code, msgBody, e);
+//		if(e!=null){
+//			throw new RetException(ret);
+//		}
+//		return ret;
+//	}
 	
 	@JsonIgnore
 	public T getFirstData(){
@@ -176,6 +204,14 @@ public class RetResult<T> implements java.io.Serializable{
 	
 	public Exception takeException(){
 		return this.exception;
+	}
+	
+	public RetData toRetData(){
+		RetData rData=new RetData<>();
+		rData.setData(this.dataList);
+		rData.setErr(this.msgCode);
+		rData.setMsg(this.msgBody);
+		return rData;
 	}
 	
 	public String toJson(){
