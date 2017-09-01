@@ -44,6 +44,7 @@ public class RetResult<T> implements IRetResult<T>, java.io.Serializable{
 		ERR_DATA_INVALID         ("ERR_DATA_INVALID", "数据无效", "data invalid"),
 		ERR_DATA_NOT_FOUND          ("ERR_DATA_NOT_FOUND", "数据未找到", "data not found"),
 		ERR_DATA_MAX_LENGTH          ("ERR_DATA_MAX_LENGTH", "超出数据最大长度", "data out max length"),
+		ERR_DATA_OPERATE          ("ERR_DATA_OPERATE", "无效操作", "Error operate"),
 		ERR_DELETE_ERROR          ("ERR_DELETE_ERROR", "删除数据失败,请先删除其相关的数据", "delete error"),
 		ERR_LOGIN_INVALID_ESB ("ERR_LOGIN_INVALID_ESB", "ESB帐户或密码无效", "invalid ESB login"),
 		ERR_LOGIN_INVALID_ACCOUNT ("ERR_LOGIN_INVALID_ACCOUNT", "帐号不存在", "invalid account"),
