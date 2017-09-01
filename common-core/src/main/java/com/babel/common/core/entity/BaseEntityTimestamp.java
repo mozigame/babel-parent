@@ -22,8 +22,8 @@ public abstract class BaseEntityTimestamp implements Serializable {
 	public void initCreate(){
 		this.ifDel=0;
 //		this.status=1;
-		if(this.createDate==null)
-			this.createDate=new Date().getTime();
+		if(this.createTime==null)
+			this.createTime=new Date().getTime();
 		if(this.modifyDate==null)
 			this.modifyDate=new Date().getTime();
 	}
@@ -96,7 +96,7 @@ public abstract class BaseEntityTimestamp implements Serializable {
 
     /** 创建时间 */
 //    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    private Long createDate;
+    private Long createTime;
 
     /** 修改人 */
     private Long modifyUser;
@@ -158,12 +158,12 @@ public abstract class BaseEntityTimestamp implements Serializable {
 		this.createUser = createUser;
 	}
 
-	public Long getCreateDate() {
-		return createDate;
+	public Long getCreateTime() {
+		return createTime;
 	}
 
-	public void setCreateDate(Long createDate) {
-		this.createDate = createDate;
+	public void setCreateTime(Long createTime) {
+		this.createTime = createTime;
 	}
 
 	public Long getModifyUser() {
