@@ -7,8 +7,7 @@ import net.sf.ehcache.bootstrap.BootstrapCacheLoader;
 import net.sf.ehcache.event.RegisteredEventListeners;
 import net.sf.ehcache.store.MemoryStoreEvictionPolicy;
 
-import com.alibaba.druid.support.logging.Log;
-import com.alibaba.druid.support.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 
 
@@ -18,7 +17,7 @@ import com.alibaba.druid.support.logging.LogFactory;
  *
  */
 public class EhcacheUtil {
-	private static final Log logger = LogFactory.getLog(EhcacheUtil.class);
+    private static final Logger logger = Logger.getLogger(EhcacheUtil.class);
 	/**
 	 * 用于重试规则的缓存，失效期为element级，即由element自已管。
 	 * @param cacheName

@@ -25,9 +25,13 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <scope>provided</scope>
+		</dependency>
+        <dependency>
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper</artifactId>
-           	<version>3.4.2</version>
         </dependency>
   </dependencies>
 </project>
