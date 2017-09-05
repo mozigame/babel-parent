@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import com.babel.common.core.data.IUser;
 import com.babel.common.core.data.RetResult;
 import com.babel.common.core.entity.BaseEntity;
+import com.babel.common.core.entity.BaseEntityTimestamp;
 import com.babel.common.core.service.IUserInfoService;
 import com.babel.common.core.util.CommCollections;
 import com.babel.common.core.util.SpringContextUtil;
@@ -92,6 +94,24 @@ public abstract class WebBaseController extends BaseController {
 	 */
 	private void initOperaterName(Collection<Object> list, RetResult<IUser> userRet) {
 		Collection<IUser> userList=userRet.getDataList();
+		if(!CollectionUtils.isEmpty(list)){
+		    Object object=list.iterator().next();
+		    if(object instanceof BaseEntityTimestamp){
+		        BaseEntityTimestamp b=null;
+		        for(Object o:list){
+		            b=(BaseEntityTimestamp)o;
+		            for(IUser u:userList){
+		                if(b.getCreateUser()!=null && b.getCreateUser().longValue()==u.getCid().longValue()){
+		                    b.setCreate_disp(u.getName());
+		                }
+		                if(b.getModifyUser()!=null && b.getModifyUser().longValue()==u.getCid().longValue()){
+		                    b.setModify_disp(u.getName());
+		                }
+		            }
+		        }
+		        return;
+		    }
+		}
 		BaseEntity b=null;
 		for(Object o:list){
 			b=(BaseEntity)o;
