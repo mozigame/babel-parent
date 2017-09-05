@@ -55,6 +55,16 @@ public abstract class BaseEntitySimple implements Serializable {
 					userIdSet.add(b.getCreateUser());
 			}
 		}
+		else if(obj instanceof BaseEntityTimestamp){//检查第一个对象是否继承BaseEntity
+		    BaseEntityTimestamp b=null;
+            for(Object o:list){
+                b=(BaseEntityTimestamp)o;
+                if(b.getModifyUser()!=null)
+                    userIdSet.add(b.getModifyUser());
+                if(b.getCreateUser()!=null)
+                    userIdSet.add(b.getCreateUser());
+            }
+        }
 		return userIdSet;
 	}
 	
