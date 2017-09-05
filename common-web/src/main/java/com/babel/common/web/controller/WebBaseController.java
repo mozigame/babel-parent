@@ -33,6 +33,9 @@ public abstract class WebBaseController extends BaseController {
 //		return SysconfigUsers.getUserEnvMap(this.getCurrentUserId());
 //	}
 	
+//	@Inject("userBaseService")
+//	@Autowired
+//	@Qualifier("userInfoService") 
 	private IUserInfoService userInfoService;
 	
 	/**
@@ -51,8 +54,8 @@ public abstract class WebBaseController extends BaseController {
 	
 	protected void initDisp(Collection list){
 		if(list!=null){
-			if(userInfoService==null && SpringContextUtil.containsBean("userInfoService")){
-				userInfoService=(IUserInfoService)SpringContextUtil.getBean("userInfoService");
+			if(userInfoService==null && SpringContextUtil.containsBean("userBaseService")){
+				userInfoService=(IUserInfoService)SpringContextUtil.getBean("userBaseService");
 			}
 			if(userInfoService==null){
 				logger.warn("userInfoService not found");

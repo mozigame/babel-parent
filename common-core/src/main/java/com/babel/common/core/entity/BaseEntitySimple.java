@@ -74,6 +74,17 @@ public abstract class BaseEntitySimple implements Serializable {
 	 * @return
 	 */
 	public static List<Long> getCidList(Collection list) {
+	    if(!CollectionUtils.isEmpty(list)) {
+	        Object object=list.iterator().next();
+	        if(object instanceof BaseEntityTimestamp) {
+	            Collection<BaseEntityTimestamp> eList=list;
+	            List<Long> idList=new ArrayList<>();
+	            for(BaseEntityTimestamp o:eList){
+	                idList.add(o.getCid());
+	            }
+	            return idList;
+	        }
+	    }
 		Collection<BaseEntitySimple> eList=list;
 		List<Long> idList=new ArrayList<>();
 		for(BaseEntitySimple o:eList){
