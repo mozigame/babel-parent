@@ -32,8 +32,8 @@ public class PageVO<T> implements IPageVO<T>, java.io.Serializable{
 	private int totalPage;
 	private int currentPage;
 	private Collection<T> datas;
-	private String sort;
-	private String order;
+	private String sort;//column
+	private String order;//asc/desc
 	public static List<String>commParamList=CommUtil.newList("sort","order","page","rows","startDate","endDate");
 	private Map<String, String> paramMap=null;
 	public PageVO(){
@@ -42,6 +42,17 @@ public class PageVO<T> implements IPageVO<T>, java.io.Serializable{
 	public PageVO(int currentPage, int pageSize){
 		this.currentPage=currentPage;
 		this.pageSize=pageSize;
+		paramMap=new HashMap<>();
+		pageSizeCheck();
+		
+	}
+	
+	public PageVO(PageDTO page){
+		this.currentPage=page.getPage();
+		this.pageSize=page.getRows();
+		if(page.getRows()==null){
+			this.pageSize=page.getPageSize();
+		}
 		paramMap=new HashMap<>();
 		pageSizeCheck();
 		

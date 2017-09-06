@@ -7,17 +7,20 @@ import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 
 
 
 public class ConfigUtils {
 	 private static final Log log4 = LogFactory.getLog(ConfigUtils.class);
-	 
+	
+	private static Environment env;
+	
 	protected static Properties config;//配置信息
 	public void setConfig(Properties config) {
 		ConfigUtils.config = config;
 		setProperties(config);
-		
 	}
 	
 	public static void setProperties(Properties config) {
@@ -97,12 +100,18 @@ public class ConfigUtils {
 	}
 	
 	public static String getConfigValue(String code){
+		if(env==null && SpringContextUtil.containsBean("environment")){
+			env=(Environment)SpringContextUtil.getBean("environment");
+		}
 		config_key key = config_key.getConfigKey(code);
 		if(key!=null){
 			return getConfigValue(key);
 		}
 		else{
 			String v= initMap.get(code);
+			if(v==null && env!=null){
+				v=env.getProperty(code);
+			}
 			if(v==null){
 				log4.warn("-----Invalid config code:"+code);
 			}
