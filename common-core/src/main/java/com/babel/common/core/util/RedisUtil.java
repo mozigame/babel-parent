@@ -31,6 +31,10 @@ public class RedisUtil {
 		return redisTemplate;
 	}
 	
+	public static boolean isHasRedisTemplate(){
+		return SpringContextUtil.containsBean("redisTemplate");
+	}
+	
 	/**
 	 * 设备失效期
 	 * @param redisKey
