@@ -9,13 +9,21 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.babel.common.core.data.RetData;
 import com.babel.common.core.data.RetResult;
+import com.babel.common.core.exception.BaseException;
+import com.babel.common.core.exception.InputErrException;
+import com.babel.common.core.exception.InputNullException;
+import com.babel.common.core.exception.NoPermissionException;
+import com.babel.common.core.exception.PasswordInvalidException;
 import com.babel.common.core.exception.RetException;
+import com.babel.common.core.exception.UnknownException;
 import com.babel.common.web.context.AppContext;
 
 
@@ -34,19 +42,13 @@ public class GlobalExceptionHandler {
 	private final static Logger log4 = Logger.getLogger(GlobalExceptionHandler.class);
       
     private final static String EXPTION_MSG_KEY = "message";  
-    private RetResult ret=new RetResult();
+//    private RetResult ret=new RetResult();
     @ExceptionHandler(Exception.class)  
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)  
     @ResponseBody
-    public RetResult handleBizExp(HttpServletRequest request, Exception ex){  
+    public RetData handleBizExp(HttpServletRequest request, Exception ex){  
     	log4.error("---handleBizExp--req="+this.getRequestMap(request)+"\n error=" + ex.getMessage(), ex);  
-//        request.getSession(true).setAttribute(EXPTION_MSG_KEY, ex.getMessage());  
-//        ModelAndView mv = new ModelAndView();  
-//        mv.addObject("message", ex.getMessage());  
-//        mv.setViewName("error");
-    	ret.initError(RetResult.msg_codes.ERR_UNKNOWN, ex.getMessage(), ex);
-    	ret.setFlag(9);//controll异常拦截9
-        return ret;  
+    	return RetData.createByBaseException(new UnknownException("error:"+ex.getMessage()));
     }  
     
     @ExceptionHandler(RetException.class)  
@@ -65,6 +67,22 @@ public class GlobalExceptionHandler {
 //        mv.addObject("data", ret.getFirstData());
 //        mv.setViewName("errorRet");  
         return ex.getRetResult();  
+    }  
+    
+    @ExceptionHandler(BaseException.class)  
+    @ResponseBody
+    public ResponseEntity<RetData> handleRetExp(HttpServletRequest request, BaseException ex){  
+    	log4.error("---handleRetDataExp--req="+this.getRequestMap(request)+"\n error=" + ex.getMessage(), ex);
+    	RetData retData=RetData.createByBaseException(ex);
+    	if(ex instanceof InputErrException
+    			||ex instanceof InputNullException
+    			||ex instanceof NoPermissionException
+    			||ex instanceof PasswordInvalidException){
+    		 return new ResponseEntity<>(retData, HttpStatus.BAD_REQUEST);
+    	}
+    	else{
+    		return new ResponseEntity<>(retData, HttpStatus.INTERNAL_SERVER_ERROR);
+    	}
     }  
 //      
 //    @ExceptionHandler(SQLException.class)  
