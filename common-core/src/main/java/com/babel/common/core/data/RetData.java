@@ -42,6 +42,10 @@ public class RetData<T> implements java.io.Serializable{
 	private String err = "SUCCESS";
 	private String msg = "";
 	/**
+	 * 数据最大修改时间，用于比较之前数据拉取后有没有发生变化，如果有变化就返回，没有变化，就返回空数据
+	 */
+	private Long maxUpdateTime;
+	/**
 	 * @return the data
 	 */
 	public T getData() {
@@ -76,6 +80,12 @@ public class RetData<T> implements java.io.Serializable{
 	 */
 	public void setMsg(String msg) {
 		this.msg = msg;
+	}
+	public Long getMaxUpdateTime() {
+		return maxUpdateTime;
+	}
+	public void setMaxUpdateTime(Long maxUpdateTime) {
+		this.maxUpdateTime = maxUpdateTime;
 	}
 	
 	

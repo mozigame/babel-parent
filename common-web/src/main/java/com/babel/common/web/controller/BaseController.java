@@ -82,6 +82,10 @@ public abstract class BaseController {
 		return AppContext.getCurrentUserId();
 	}
 	
+	public String getCurrentUsername(){
+		return AppContext.getUsername();
+	}
+	
 	
 	public IUser getCurrentUser(){
 		return AppContext.getCurrentUser();
