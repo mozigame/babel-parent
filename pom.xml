@@ -20,6 +20,7 @@
 		<module>common-core</module>
 		<module>common-web</module>
 		<module>common-config</module>
+		<module>common-constant</module>
 	</modules>
 	
 
