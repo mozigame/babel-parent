@@ -33,6 +33,7 @@
 		<common-config.version>0.0.1-SNAPSHOT</common-config.version>
 		<common-core.version>0.0.1-SNAPSHOT</common-core.version>
 		<common-web.version>0.0.1-SNAPSHOT</common-web.version>
+		<common-constant.version>0.0.1-SNAPSHOT</common-constant.version>
 
 
 
