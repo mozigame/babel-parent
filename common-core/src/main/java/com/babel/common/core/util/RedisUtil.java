@@ -144,6 +144,18 @@ public class RedisUtil {
 		putRedis(redisKey, key.toString(), obj);
 	}
 	
+//	private static long refresh_time=0;;
+//	private static void refresh(Map cacheMap){
+//		Date curDate=new Date();
+//		if(refresh_time==0){
+//			refresh_time=curDate.getTime();
+//		}
+//		else if((curDate.getTime()-refresh_time)>600000){//10分钟刷一次
+//			refresh_time=curDate.getTime();
+//			cacheMap.clear();
+//		}
+//	}
+	
 	/**
 	 * 优先用本地缓存，没有则自动从redis更新数据到本地缓存
 	 * redis没有或失效不影响功能的使用

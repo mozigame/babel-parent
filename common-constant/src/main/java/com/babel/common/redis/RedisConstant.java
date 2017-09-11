@@ -9,7 +9,7 @@ public class RedisConstant {
 	/**
 	 * 最大修改时间
 	 */
-	public final static String KEY_DATA_MAX_MODIFY_DATE="_dataMaxModifyDate";
+	public final static String KEY_DATA_MAX_MODIFY_TIME="_dataMaxModifyTime";
 	public static enum dataMaxModifyDate{
 		PLAT_INFO("platInfo")
 		,LOTTERY("lotteryInfo")
@@ -60,4 +60,16 @@ public class RedisConstant {
 	 * 下注数据状态-玩法-描述
 	 */
 	public final static String KEY_BET_STATUS_PLAYS_DESCS="_betStatusPlaysDescs";
+	
+	/**
+	 * 平台商id缓存
+	 */
+	public final static String LOGIN_KEY_PLAT_ID="_platIdMap";
+	
+	/**
+	 * 登入用户login的id
+	 */
+	public final static String LOGIN_KEY_MEMBER_ID="_memberIdMap";
+	
+	public final static String LOGIN_KEY_MEMBER_STATUS="_memberStatusMap";
 }
