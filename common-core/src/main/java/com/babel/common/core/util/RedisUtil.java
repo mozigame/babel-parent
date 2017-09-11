@@ -109,6 +109,24 @@ public class RedisUtil {
 		return user;
 	}
 	
+	public static Object getRedisAlls(String redisKey){
+
+		Object user=null;
+		RedisTemplate redisTemplate = RedisUtil.getRedisTemplate();
+		if (redisTemplate != null) {
+			try {
+				if (redisErrorDate == null || new Date().getTime() - redisErrorDate.getTime() > 10000) {// 如果redis发生错误，10秒内不处理
+					user = redisTemplate.opsForHash().entries(redisKey);
+				}
+			} catch (Exception e) {
+				redisErrorDate = new Date();
+				logger.warn("-----getRedisKeys--redisKey=" + redisKey + " error:" + e.getMessage(), e);
+			}
+
+		}
+		return user;
+	}
+	
 	/**
 	 * 优先用本地缓存
 	 * redis没有或失效不影响功能的使用
