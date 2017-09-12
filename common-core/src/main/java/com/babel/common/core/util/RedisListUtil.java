@@ -125,6 +125,16 @@ public class RedisListUtil {
 		}
 	}
 	
+	public static void rightPush(final RedisTemplate redisTemplate, final String redisKey, Object object){
+		if(object==null){
+			return;
+		}
+		
+//		synchronized(redisKey){
+		redisTemplate.boundListOps(redisKey).rightPush(object);
+//		}
+	}
+	
 	public static List getListWithRemove(final RedisTemplate redisTemplate, final String redisKey, final long sizeGet){
 		List list=new ArrayList();
 		synchronized(redisKey){

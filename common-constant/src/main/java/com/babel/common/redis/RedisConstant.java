@@ -72,4 +72,45 @@ public class RedisConstant {
 	public final static String LOGIN_KEY_MEMBER_ID="_memberIdMap";
 	
 	public final static String LOGIN_KEY_MEMBER_STATUS="_memberStatusMap";
+	
+	/**
+	 * 用户当期下注记录,list
+	 */
+	public final static String BET_ORDER_LIST="_bet_orderList";
+	/**
+	 * 用户当期注单状态,map
+	 */
+	public final static String BET_ORDER_STATUS="_bet_orderStatus";
+	
+	public final static String BET_USER_ORDER="_bet_userOrder";
+	
+	/**
+	 * 用户当期下注记录,list
+	 * 有效期1小时
+	 * @param pcode
+	 * @return
+	 */
+	public final static String getKeyOperList(Long pcode){
+		return BET_ORDER_LIST+"_"+pcode;
+	}
+	
+	/**
+	 * 用户当期注单状态 map
+	 * 有效期1小时
+	 * @param pcode
+	 * @return
+	 */
+	public final static String getKeyOperStatus(Long pcode){
+		return BET_ORDER_STATUS+"_"+pcode;
+	}
+	
+	/**
+	 * 用户下注成功记录,list
+	 * 有效期1小时
+	 * @param pcode
+	 * @return
+	 */
+	public final static String getKeyUserOrder(Long pcode){
+		return BET_USER_ORDER+"_"+pcode;
+	}
 }
