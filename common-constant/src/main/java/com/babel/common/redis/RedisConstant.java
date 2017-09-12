@@ -91,7 +91,7 @@ public class RedisConstant {
 	 * @return
 	 */
 	public final static String getKeyOperList(Long lotteryId, Long pcode){
-		return BET_ORDER_LIST+"_"+pcode;
+		return BET_ORDER_LIST+"_"+lotteryId+"_"+pcode;
 	}
 	
 	/**
@@ -101,7 +101,7 @@ public class RedisConstant {
 	 * @return
 	 */
 	public final static String getKeyOperStatus(Long lotteryId, Long pcode){
-		return BET_ORDER_STATUS+"_"+pcode;
+		return BET_ORDER_STATUS+"_"+lotteryId+"_"+pcode;
 	}
 	
 	/**
@@ -111,6 +111,6 @@ public class RedisConstant {
 	 * @return
 	 */
 	public final static String getKeyUserOrder(Long lotteryId, Long pcode){
-		return BET_USER_ORDER+"_"+pcode;
+		return BET_USER_ORDER+"_"+lotteryId+"_"+pcode;
 	}
 }
