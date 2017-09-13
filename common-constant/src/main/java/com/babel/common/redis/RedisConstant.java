@@ -26,6 +26,12 @@ public class RedisConstant {
 		}
 		
 	}
+	
+	/**
+	 * hash 数据库id生成器key
+	 */
+	public static final String KEY_SEQUENCE_CID="redisSequenceId";
+	
 	/**
 	 * 下注数据状态-平台商
 	 */
