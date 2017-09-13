@@ -1,6 +1,8 @@
 package com.babel.common.core.util;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
@@ -30,8 +32,12 @@ public class RedisIdUtil {
 	}
 	
 	public synchronized static void initRedisKeyCid(String cidKey){
-		Long initCid=100000000l;
+		Long initCid=10000000l;
 		initRedisKeyCid(cidKey, initCid);
+	}
+	
+	public final static boolean hasSequenceId(String cidKey){
+		return RedisUtil.getRedisTemplate().opsForHash().hasKey(REDIS_KEY_SEQUENCE_CID, cidKey);
 	}
 	
 	/**
@@ -46,5 +52,24 @@ public class RedisIdUtil {
 			cid=redisTemplate.opsForHash().increment(REDIS_KEY_SEQUENCE_CID, cidKey, 1);
 		}
 		return cid;
+	}
+	
+	/**
+	 * redis的cid生成器
+	 * @param cidKey
+	 * @return
+	 */
+	public static List<Long> getRedisNextCids(String cidKey, int size){
+		List<Long> cidList=new ArrayList<>();
+		RedisTemplate redisTemplate=RedisUtil.getRedisTemplate();
+		if(redisTemplate!=null){
+			Long cid=redisTemplate.opsForHash().increment(REDIS_KEY_SEQUENCE_CID, cidKey, size);
+			if(size>0){
+				for(long i=size-1; i>=0; i--){
+					cidList.add(cid-i);
+				}
+			}
+		}
+		return cidList;
 	}
 }
