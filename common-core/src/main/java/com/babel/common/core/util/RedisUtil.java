@@ -351,7 +351,7 @@ public class RedisUtil {
 				cacheMap.clear();
 				Long time = clearCacheTimeMap.get(key);
 				Long curTime = System.currentTimeMillis();
-				logger.info("----clear cache by maxCount:" + maxCount + " cacheSize=" + cacheMap.size() + " time="+ (curTime - time));
+				logger.info("----clear cache:"+key+" by maxCount:" + maxCount + " cacheSize=" + cacheMap.size() + " time="+ (curTime - time));
 
 			}
 		}
@@ -365,7 +365,7 @@ public class RedisUtil {
 				clearCacheTimeMap.put(key, curTime);
 				cacheMap.clear();
 				Integer count = cacheCounterMap.get(key);
-				logger.info("----clear cache by intvTime:" + intvTime + " cacheSize=" + cacheMap.size() + " count="	+ count);
+				logger.info("----clear cache:"+key+" by intvTime:" + intvTime + " cacheSize=" + cacheMap.size() + " count="	+ count);
 			}
 		}
 
