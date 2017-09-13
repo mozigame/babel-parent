@@ -3,6 +3,7 @@ package com.babel.common.core.util;
 
 import java.util.Date;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
@@ -91,9 +92,9 @@ public class RedisUtil {
 		return user;
 	}
 	
-	public static Object getRedisKeys(String redisKey){
+	public static Set getRedisKeys(String redisKey){
 
-		Object user=null;
+		Set user=null;
 		RedisTemplate redisTemplate = RedisUtil.getRedisTemplate();
 		if (redisTemplate != null) {
 			try {
@@ -109,14 +110,14 @@ public class RedisUtil {
 		return user;
 	}
 	
-	public static Object getRedisAlls(String redisKey){
+	public static Map getRedisAlls(String redisKey){
 
-		Object user=null;
+		Map map=null;
 		RedisTemplate redisTemplate = RedisUtil.getRedisTemplate();
 		if (redisTemplate != null) {
 			try {
 				if (redisErrorDate == null || new Date().getTime() - redisErrorDate.getTime() > 10000) {// 如果redis发生错误，10秒内不处理
-					user = redisTemplate.opsForHash().entries(redisKey);
+					map = redisTemplate.opsForHash().entries(redisKey);
 				}
 			} catch (Exception e) {
 				redisErrorDate = new Date();
@@ -124,7 +125,7 @@ public class RedisUtil {
 			}
 
 		}
-		return user;
+		return map;
 	}
 	
 	/**

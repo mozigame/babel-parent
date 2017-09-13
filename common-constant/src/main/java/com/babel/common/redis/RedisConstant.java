@@ -77,6 +77,11 @@ public class RedisConstant {
 	 * 用户当期下注记录,list
 	 */
 	public final static String BET_ORDER_LIST="_bet_orderList";
+	
+	/**
+	 * 正在处理的下注数据
+	 */
+	public final static String BET_ORDER_DO_MAP="_bet_orderDoMap";
 	/**
 	 * 用户当期注单状态,map
 	 */
@@ -92,6 +97,16 @@ public class RedisConstant {
 	 */
 	public final static String getKeyOperList(Long lotteryId, Long pcode){
 		return BET_ORDER_LIST+"_"+lotteryId+"_"+pcode;
+	}
+	
+	/**
+	 * 正在处理map
+	 * 有效期1小时
+	 * @param pcode
+	 * @return
+	 */
+	public final static String getKeyOperDoMap(Long lotteryId, Long pcode){
+		return BET_ORDER_DO_MAP+"_"+lotteryId+"_"+pcode;
 	}
 	
 	/**
