@@ -12,7 +12,8 @@ public class RedisConstant {
 	public final static String KEY_DATA_MAX_MODIFY_TIME="_dataMaxModifyTime";
 	public static enum dataMaxModifyDate{
 		PLAT_INFO("platInfo")
-		,LOTTERY("lotteryInfo")
+		,LOTTERY_STATUS("lotteryStatus")
+//		,LOTTERY("lotteryInfo")
 		,PLAYS("plays")
 		,PLAYS_ODDS("playsOdds")
 		,PLAYS_DESCS("playsDescs")
