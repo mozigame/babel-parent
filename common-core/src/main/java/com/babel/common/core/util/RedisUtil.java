@@ -326,4 +326,49 @@ public class RedisUtil {
 		}
 		redisLockUtil.unLock("_lock."+redisKey);
 	}
+	
+	private static Map<String, Long> clearCacheTimeMap = new ConcurrentHashMap<>();
+	private static Map<String, Integer> cacheCounterMap = new ConcurrentHashMap<>();
+
+	/**
+	 * 用于控制自动清理本地缓存，支持按间隔时间或按调用次数
+	 * 
+	 * @param key
+	 * @param cacheMap
+	 * @param intvTime
+	 * @param maxCount
+	 */
+	public static void cleanCacheMap(String key, Map<String, Object> cacheMap, Integer intvTime, Integer maxCount) {
+		if (maxCount > 0) {
+			Integer count = cacheCounterMap.get(key);
+			if (count == null) {
+				count = 0;
+			}
+			count++;
+			if (count > maxCount) {
+				count = 0;
+				cacheCounterMap.put(key, count);
+				cacheMap.clear();
+				Long time = clearCacheTimeMap.get(key);
+				Long curTime = System.currentTimeMillis();
+				logger.info("----clear cache by maxCount:" + maxCount + " cacheSize=" + cacheMap.size() + " time="+ (curTime - time));
+
+			}
+		}
+
+		if (intvTime > 0) {
+			Long time = clearCacheTimeMap.get(key);
+			Long curTime = System.currentTimeMillis();
+			if (time == null) {
+				clearCacheTimeMap.put(key, curTime);
+			} else if (curTime - time > intvTime * 1000) {
+				clearCacheTimeMap.put(key, curTime);
+				cacheMap.clear();
+				Integer count = cacheCounterMap.get(key);
+				logger.info("----clear cache by intvTime:" + intvTime + " cacheSize=" + cacheMap.size() + " count="	+ count);
+			}
+		}
+
+	}
+
 }
