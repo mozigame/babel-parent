@@ -10,6 +10,7 @@ public class ScheduleConstant {
      * 处理redis数据的间隔时间
      */
     public static final int cacheFlushRate = 180000;   //3分钟
+    public static final int cacheSaveBetOrderAsync= 100;   //0.1秒
   
 
 }

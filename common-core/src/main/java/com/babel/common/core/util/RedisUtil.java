@@ -338,7 +338,7 @@ public class RedisUtil {
 	 * @param intvTime
 	 * @param maxCount
 	 */
-	public static void cleanCacheMap(String key, Map<String, Object> cacheMap, Integer intvTime, Integer maxCount) {
+	public static void cleanCacheMap(String key, Map cacheMap, Integer intvTime, Integer maxCount) {
 		if (maxCount > 0) {
 			Integer count = cacheCounterMap.get(key);
 			if (count == null) {
