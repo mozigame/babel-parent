@@ -133,6 +133,15 @@ import org.apache.commons.logging.LogFactory;
    public static Date parse(String dateStr, String pattern) throws ParseException {
        return getSdf(pattern).parse(dateStr);
    }
+   
+   /**
+    * 获取日期数值
+    * @param date
+    * @return
+    */
+   public static Long getPdate(Date date){
+	   return Long.parseLong(DateUtils.format(date, "yyyyMMdd"));
+   }
  }
 
 

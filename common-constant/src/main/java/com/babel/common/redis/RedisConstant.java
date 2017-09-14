@@ -100,6 +100,8 @@ public class RedisConstant {
 	
 	public final static String BET_USER_ORDER_PCODE="_bet_userOrderPcode";
 	
+	public final static String BET_USER_ORDER_PCODE_MAP="_bet_userOrderPcodeMap";
+	
 	/**
 	 * 用户当期下注记录,list
 	 * 有效期1小时
@@ -141,10 +143,14 @@ public class RedisConstant {
 	}
 	
 	public final static String getKeyUserOrderMap(Long lotteryId, Long pcode){
-		return BET_USER_ORDER_PLAY+"_"+lotteryId+"_"+pcode;
+		return BET_USER_ORDER_PLAY_MAP+"_"+lotteryId+"_"+pcode;
 	}
 	
 	public final static String getKeyUserOrderPcode(Long memberId, Long pdate, Long pcode){
 		return BET_USER_ORDER_PCODE+"_"+memberId+"_"+pdate+"_"+pcode;
+	}
+	
+	public final static String getKeyUserOrderPcodeMap(Long memberId, Long pdate){
+		return BET_USER_ORDER_PCODE_MAP+"_"+memberId+"_"+pdate;
 	}
 }
