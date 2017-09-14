@@ -94,7 +94,11 @@ public class RedisConstant {
 	 */
 	public final static String BET_ORDER_STATUS="_bet_orderStatus";
 	
-	public final static String BET_USER_ORDER="_bet_userOrder";
+	public final static String BET_USER_ORDER_PLAY="_bet_userOrderPlay";
+	
+	public final static String BET_USER_ORDER_PLAY_MAP="_bet_userOrderPlayMap";
+	
+	public final static String BET_USER_ORDER_PCODE="_bet_userOrderPcode";
 	
 	/**
 	 * 用户当期下注记录,list
@@ -132,7 +136,15 @@ public class RedisConstant {
 	 * @param pcode
 	 * @return
 	 */
-	public final static String getKeyUserOrder(Long lotteryId, Long pcode){
-		return BET_USER_ORDER+"_"+lotteryId+"_"+pcode;
+	public final static String getKeyUserOrder(Long lotteryId, Long pcode, Long playId){
+		return BET_USER_ORDER_PLAY+"_"+lotteryId+"_"+pcode+"_"+playId;
+	}
+	
+	public final static String getKeyUserOrderMap(Long lotteryId, Long pcode){
+		return BET_USER_ORDER_PLAY+"_"+lotteryId+"_"+pcode;
+	}
+	
+	public final static String getKeyUserOrderPcode(Long memberId, Long pdate, Long pcode){
+		return BET_USER_ORDER_PCODE+"_"+memberId+"_"+pdate+"_"+pcode;
 	}
 }
