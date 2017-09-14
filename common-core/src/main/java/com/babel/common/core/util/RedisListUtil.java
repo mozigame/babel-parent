@@ -14,6 +14,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 
 /**
  * redis list数据获取
+ * 处理机制:leftPush, rightPop
  * @author jinhe.chen
  *
  */
@@ -97,7 +98,7 @@ public class RedisListUtil {
 					public List execute(RedisOperations operations) throws DataAccessException {
 						operations.multi();
 						for(int i=0; i<findSize; i++){
-							operations.opsForList().leftPop(redisKey);
+							operations.opsForList().rightPop(redisKey);
 						}
 						return operations.exec();
 					}
@@ -121,17 +122,17 @@ public class RedisListUtil {
 		}
 		
 		synchronized(redisKey){
-			redisTemplate.boundListOps(redisKey).rightPushAll(list.toArray());
+			redisTemplate.boundListOps(redisKey).leftPushAll(list.toArray());
 		}
 	}
 	
-	public static void rightPush(final RedisTemplate redisTemplate, final String redisKey, Object object){
+	public static void leftPush(final RedisTemplate redisTemplate, final String redisKey, Object object){
 		if(object==null){
 			return;
 		}
 		
 //		synchronized(redisKey){
-		redisTemplate.boundListOps(redisKey).rightPush(object);
+		redisTemplate.boundListOps(redisKey).leftPush(object);
 //		}
 	}
 	
