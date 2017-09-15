@@ -355,6 +355,7 @@ public class RedisUtil {
 				logger.info("----clear cache:"+key+" by maxCount:" + maxCount + " cacheSize=" + cacheMap.size() + " time="+ (curTime - time));
 
 			}
+			cacheCounterMap.put(key, count);
 		}
 
 		if (intvTime > 0) {
