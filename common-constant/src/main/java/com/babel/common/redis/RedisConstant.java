@@ -76,9 +76,14 @@ public class RedisConstant {
 	/**
 	 * 登入用户login的id
 	 */
+	public final static String LOGIN_KEY_MEMBER="_memberMap";
 	public final static String LOGIN_KEY_MEMBER_ID="_memberIdMap";
 	
-	public final static String LOGIN_KEY_MEMBER_STATUS="_memberStatusMap";
+//	public final static String LOGIN_KEY_MEMBER_AC_TYPE="_memberAcTypeMap";
+//	
+//	public final static String LOGIN_KEY_MEMBER_STATUS="_memberStatusMap";
+	
+	public final static String LOGIN_KEY_MEMBER_BAL_AMOUNT="_memberBalAmountMap";
 	
 	/**
 	 * 用户当期下注记录,list
@@ -152,5 +157,9 @@ public class RedisConstant {
 	
 	public final static String getKeyUserOrderPcodeMap(Long memberId, Long pdate){
 		return BET_USER_ORDER_PCODE_MAP+"_"+memberId+"_"+pdate;
+	}
+	
+	public final static String getKeyMemberBalAmount(Integer acType){
+		return LOGIN_KEY_MEMBER_BAL_AMOUNT+"_"+acType;
 	}
 }
