@@ -52,7 +52,7 @@ public class RedisUtil {
 		}
 	}
 	
-	public static void putRedis(String redisKey, String key, Object obj){
+	public static void putRedis(String redisKey, Object key, Object obj){
 		if(key==null){
 			logger.warn("----putRedis--redisKey="+redisKey+" key="+key+" is empty");
 			return;
