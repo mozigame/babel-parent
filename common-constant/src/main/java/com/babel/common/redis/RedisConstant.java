@@ -34,12 +34,16 @@ public class RedisConstant {
 	public static final String KEY_SEQUENCE_CID="redisSequenceId";
 	
 	/**
-	 * 下注数据状态-平台商
+	 * 下注数据状态-平台商, {platInfoId, status}
+	 * 处理位置：forseti:taskLoadService.reloadPlatInfo()
+	 * 执行周期3分钟一次
 	 */
 	public final static String KEY_BET_STATUS_PLAT="_betStatusPlat";
 	
 	/**
-	 * 数据-平台商信息
+	 * 数据-平台商信息，{platInfoId, platInfoPO}
+	 * 处理位置：forseti:taskLoadService.reloadPlatInfo()
+	 * 执行周期3分钟一次
 	 */
 	public final static String KEY_DATA_PLAT_INFO="_dataPlatInfo";
 	
@@ -69,20 +73,34 @@ public class RedisConstant {
 	public final static String KEY_BET_STATUS_PLAYS_DESCS="_betStatusPlaysDescs";
 	
 	/**
-	 * 平台商id缓存
+	 * 平台商id缓存,{appid, platInfoId}
 	 */
 	public final static String LOGIN_KEY_PLAT_ID="_platIdMap";
 	
 	/**
-	 * 登入用户login的id
+	 * 登入用户member,{memberId, memberVO}
+	 * 处理位置：uaa,memberService.findOneWithAuthoritiesByLogin
+	 * 处理方式，用户首次登入缓存
 	 */
 	public final static String LOGIN_KEY_MEMBER="_memberMap";
+	/**
+	 * 登入用户login的id, {login:memberId}
+	 * 处理位置：uaa,memberService.findOneWithAuthoritiesByLogin
+	 * 处理方式，用户首次登入缓存
+	 * 
+	 */
 	public final static String LOGIN_KEY_MEMBER_ID="_memberIdMap";
 	
 //	public final static String LOGIN_KEY_MEMBER_AC_TYPE="_memberAcTypeMap";
 //	
 //	public final static String LOGIN_KEY_MEMBER_STATUS="_memberStatusMap";
 	
+	/**
+	 * 会员余额缓存，{memberId, Long}
+	 * @key getKeyMemberBalAmount
+	 * 处理位置：uaa, memberBalanceService.findOneByMemberBalance
+	 * 处理方式：首次查询后缓存
+	 */
 	public final static String LOGIN_KEY_MEMBER_BAL_AMOUNT="_memberBalAmountMap";
 	
 	/**
