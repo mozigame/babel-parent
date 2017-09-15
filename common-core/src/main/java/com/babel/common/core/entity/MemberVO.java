@@ -1,8 +1,17 @@
 package com.babel.common.core.entity;
 
-public class MemberVO {
+import java.io.Serializable;
 
-    private Long cid;
+public class MemberVO implements Serializable{
+	
+
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8308405408665786722L;
+
+
+	private Long cid;
 
 
     private Long platInfoId;
