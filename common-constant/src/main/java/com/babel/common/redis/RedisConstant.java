@@ -102,6 +102,10 @@ public class RedisConstant {
 	 * 处理方式：首次查询后缓存
 	 */
 	public final static String LOGIN_KEY_MEMBER_BAL_AMOUNT="_memberBalAmountMap";
+	public final static String LOGIN_KEY_MEMBER_BAL_AMOUNT_LOCK="_memberBalAmountLock";
+	
+	public final static String LOGIN_KEY_PLAT_BAL_AMOUNT="_platBalAmountMap";
+	public final static String LOGIN_KEY_PLAT_BAL_AMOUNT_LOCK="_platBalAmountLock";
 	
 	/**
 	 * 用户当期下注记录,list
@@ -179,5 +183,15 @@ public class RedisConstant {
 	
 	public final static String getKeyMemberBalAmount(Integer acType){
 		return LOGIN_KEY_MEMBER_BAL_AMOUNT+"_"+acType;
+	}
+	public final static String getKeyMemberBalAmountLock(Integer acType){
+		return LOGIN_KEY_MEMBER_BAL_AMOUNT_LOCK+"_"+acType;
+	}
+	
+	public final static String getKeyPlatBalAmount(Integer acType){
+		return LOGIN_KEY_PLAT_BAL_AMOUNT+"_"+acType;
+	}
+	public final static String getKeyPlatBalAmountLock(Integer acType){
+		return LOGIN_KEY_PLAT_BAL_AMOUNT_LOCK+"_"+acType;
 	}
 }
