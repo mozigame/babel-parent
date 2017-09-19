@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public enum OrderStatus {
 
-    lottery_success(1, "投注成功"),
+    bet_success(1, "投注成功"),
     withdrawals(2, "用户撤单"),
     prize_no_win(31, "派奖-未中奖"),
     prize_win(32, "派奖-中奖"),
