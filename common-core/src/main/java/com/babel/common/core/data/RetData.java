@@ -8,6 +8,8 @@ import com.babel.common.core.exception.UnknownException;
  * @author shihui.cai
  */
 public class RetData<T> implements java.io.Serializable{
+
+	private static final String SUCCESS = "SUCCESS";
 	/**
 	 * 
 	 */
