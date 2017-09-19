@@ -181,6 +181,43 @@ public class RedisUtil {
 		return user;
 	}
 	
+	public static Object getRedisByIncr(String redisKey, Object key){
+		if(key==null){
+			logger.warn("----getRedis--redisKey="+redisKey+" key="+key+" is empty");
+			return null;
+		}
+		
+		Object user=null;
+		RedisTemplate redisTemplate = RedisUtil.getRedisTemplate();
+		if (redisTemplate != null) {
+			try {
+				if (redisErrorDate == null || new Date().getTime() - redisErrorDate.getTime() > 10000) {// 如果redis发生错误，10秒内不处理
+					user = redisTemplate.opsForHash().increment(redisKey, key, 0);
+				}
+			} catch (Exception e) {
+				redisErrorDate = new Date();
+				logger.warn("-----getRedis--redisKey=" + redisKey + " key=" + key + " error:" + e.getMessage(), e);
+			}
+		}
+		return user;
+	}
+	
+	public static Object getRedisByIncr(Map cacheMap, String redisKey, Object key){
+		if(key==null){
+			logger.warn("----getRedis--redisKey="+redisKey+" key="+key+" is empty");
+			return null;
+		}
+		
+		Object user= cacheMap.get(key);
+		if(user==null){
+			user=getRedisByIncr(redisKey, key);
+			if(user!=null){
+				cacheMap.put(key, user);
+			}
+		}
+		return user;
+	}
+	
 	/**
 	 * 短链接生成
 	 * @param url
