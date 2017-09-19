@@ -160,7 +160,9 @@ public class RedisConstant {
 	}
 	
 	/**
+	 * 类型：list
 	 * 用户下注成功记录,list
+	 * _bet_userOrderPlay_lotteryId_pcode_playId:userOrderList
 	 * 有效期1小时
 	 * @param pcode
 	 * @return
@@ -169,6 +171,13 @@ public class RedisConstant {
 		return BET_USER_ORDER_PLAY+"_"+lotteryId+"_"+pcode+"_"+playId;
 	}
 	
+	/**
+	 * 类型：set
+	 * _bet_userOrderPlayMap_lotteryId_pcode=[_bet_userOrderPlay_lotteryId_pcode_playId,_bet_userOrderPlay_lotteryId_pcode_playId]
+	 * @param lotteryId
+	 * @param pcode
+	 * @return
+	 */
 	public final static String getKeyUserOrderMap(Long lotteryId, Long pcode){
 		return BET_USER_ORDER_PLAY_MAP+"_"+lotteryId+"_"+pcode;
 	}
