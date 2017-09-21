@@ -2,7 +2,7 @@ package com.babel.common.core.exception;
 
 import org.apache.commons.lang3.StringUtils;
 
-public abstract class BaseException extends Exception {
+public abstract class BaseException extends RuntimeException {
 
 	/**
 	 * 
