@@ -467,5 +467,37 @@ public class CommUtil {
 		}
 		return host;
 	}
+	
+	public static String getNumStr(Long num,int length){
+		if(num==null){
+			num=0l;
+		}
+		String timeStr=""+num;
+		if(timeStr.length()<=length){
+			int len=length-timeStr.length();
+			String start="";
+			for(int i=0; i<len; i++){
+				start+="0";
+			}
+			timeStr=start+timeStr;
+		}
+		return timeStr;
+	}
+    
+    public static String getNumStr(String num,int length){
+    	if(num==null){
+    		num="0";
+    	}
+		String timeStr=""+num;
+		if(timeStr.length()<=length){
+			int len=length-timeStr.length();
+			String start="";
+			for(int i=0; i<len; i++){
+				start+="0";
+			}
+			timeStr=start+timeStr;
+		}
+		return timeStr;
+	}
 }
 
