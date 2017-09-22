@@ -10,15 +10,14 @@ import java.util.Map;
  * 用户注单状态
  */
 public enum OrderStatus {
-
-    bet_success(1, "投注成功"),
-    withdrawals(2, "用户撤单"),
+    bet_success(1, "等待开奖"),
     prize_no_win(31, "派奖-未中奖"),
-    prize_win(32, "派奖-中奖"),
-    exception(41, "存在异常,原因见备注"),
-    prize_win_stop_chase(51, "中奖停追"),
-    withdrawals_chase(52, "用户撤消追号"),
-    system_withdrawals(6, "系统撤单,原因见备注");
+    prize_win(32, "派奖-已派彩"),
+    withdrawals(4, "用户撤单"),
+    system_withdrawals(5, "系统撤单,原因见备注"),
+    prize_win_stop_chase(6, "中奖停追"),
+    exception(71, "存在异常,原因见备注"),
+    exception_deal(81, "异常处理中");
 
 
     private static Map<Integer, OrderStatus> map = new HashMap<>();
