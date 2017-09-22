@@ -11,12 +11,12 @@ import java.util.Map;
  */
 public enum OrderStatus {
     bet_success(1, "等待开奖"),
-    prize_no_win(31, "派奖-未中奖"),
-    prize_win(32, "派奖-已派彩"),
+    prize_no_win(31, "未中奖"),
+    prize_win(32, "已派彩"),
     withdrawals(4, "用户撤单"),
-    system_withdrawals(5, "系统撤单,原因见备注"),
+    system_withdrawals(5, "系统撤单"),
     prize_win_stop_chase(6, "中奖停追"),
-    exception(71, "存在异常,原因见备注"),
+    exception(71, "存在异常"),
     exception_deal(81, "异常处理中");
 
 
