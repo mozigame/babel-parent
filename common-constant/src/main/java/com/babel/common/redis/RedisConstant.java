@@ -127,7 +127,11 @@ public class RedisConstant {
 	
 	public final static String BET_USER_ORDER_PCODE="_bet_userOrderPcode";
 	
-	public final static String BET_USER_ORDER_PCODE_MAP="_bet_userOrderPcodeMap";
+	public final static String BET_USER_CHASE_PCODE="_bet_userChasePcode";
+	
+	public final static String BET_USER_ORDER_PCODE_SET="_bet_userOrderPcodeSet";
+	
+	public final static String BET_USER_CHASE_PCODE_SET="_bet_userChasePcodeSet";
 	
 	/**
 	 * 用户当期下注记录,list
@@ -186,8 +190,16 @@ public class RedisConstant {
 		return BET_USER_ORDER_PCODE+"_"+memberId+"_"+pdate+"_"+pcode;
 	}
 	
-	public final static String getKeyUserOrderPcodeMap(Long memberId, Long pdate){
-		return BET_USER_ORDER_PCODE_MAP+"_"+memberId+"_"+pdate;
+	public final static String getKeyUserChasePcode(Long memberId, Long pdate, Long pcode){
+		return BET_USER_CHASE_PCODE+"_"+memberId+"_"+pdate+"_"+pcode;
+	}
+	
+	public final static String getKeyUserOrderPcodeSet(Long memberId, Long pdate){
+		return BET_USER_ORDER_PCODE_SET+"_"+memberId+"_"+pdate;
+	}
+	
+	public final static String getKeyUserChasePcodeSet(Long memberId, Long pdate){
+		return BET_USER_CHASE_PCODE_SET+"_"+memberId+"_"+pdate;
 	}
 	
 	public final static String getKeyMemberBalAmount(Integer acType){
