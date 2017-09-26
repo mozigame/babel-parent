@@ -9,7 +9,7 @@ import com.babel.common.core.exception.UnknownException;
  */
 public class RetData<T> implements java.io.Serializable{
 
-	private static final String SUCCESS = "SUCCESS";
+	public static final String SUCCESS = "SUCCESS";
 	/**
 	 * 
 	 */
@@ -41,7 +41,7 @@ public class RetData<T> implements java.io.Serializable{
 	}
 
 	private T data;
-	private String err = "SUCCESS";
+	private String err = SUCCESS;
 	private String msg = "";
 	/**
 	 * 数据最大修改时间，用于比较之前数据拉取后有没有发生变化，如果有变化就返回，没有变化，就返回空数据
