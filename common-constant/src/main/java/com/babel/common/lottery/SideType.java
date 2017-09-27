@@ -7,7 +7,7 @@ import java.util.Map;
  * User: joey
  * Date: 2017/9/27
  * Time: 16:53
- * 单双彩
+ * 双面彩
  */
 public enum SideType {
 
