@@ -200,12 +200,12 @@ public class RedisConstant {
 		return BET_USER_ORDER_PLAY_MAP+"_"+lotteryId+"_"+pcode;
 	}
 	
-	public final static String getKeyUserOrderPcode(Long memberId, Long pdate, Long pcode){
-		return BET_USER_ORDER_PCODE+"_"+memberId+"_"+pdate+"_"+pcode;
+	public final static String getKeyUserOrderPcode(Long memberId, Long pcode){
+		return BET_USER_ORDER_PCODE+"_"+memberId+"_"+pcode;
 	}
 	
-	public final static String getKeyUserChasePcode(Long memberId, Long pdate, Long pcode){
-		return BET_USER_CHASE_PCODE+"_"+memberId+"_"+pdate+"_"+pcode;
+	public final static String getKeyUserChasePcode(Long memberId, Long pcode){
+		return BET_USER_CHASE_PCODE+"_"+memberId+"_"+pcode;
 	}
 	
 	public final static String getKeyUserOrderPcodeSet(Long memberId, Long pdate){
