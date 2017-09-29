@@ -121,6 +121,8 @@ public class RedisConstant {
 	 */
 	public final static String BET_ORDER_STATUS="_bet_orderStatus";
 	
+	public final static String BET_USER_ORDER_MAP="_bet_userOrderMap";
+	
 	public final static String BET_USER_ORDER_PLAY="_bet_userOrderPlay";
 	
 	public final static String BET_USER_ORDER_PLAY_MAP="_bet_userOrderPlayMap";
@@ -164,6 +166,18 @@ public class RedisConstant {
 	}
 	
 	/**
+	 * 类型map
+	 * 下注成功缓存map
+	 * @param lotteryId
+	 * @param pcode
+	 * @param playId
+	 * @return
+	 */
+	public final static String getKeyUserOrderMap(Long lotteryId, Long pcode){
+		return BET_USER_ORDER_MAP+"_"+lotteryId+"_"+pcode;
+	}
+	
+	/**
 	 * 类型：list
 	 * 用户下注成功记录,list
 	 * _bet_userOrderPlay_lotteryId_pcode_playId:userOrderList
@@ -171,7 +185,7 @@ public class RedisConstant {
 	 * @param pcode
 	 * @return
 	 */
-	public final static String getKeyUserOrder(Long lotteryId, Long pcode, Long playId){
+	public final static String getKeyUserOrderPlay(Long lotteryId, Long pcode, Long playId){
 		return BET_USER_ORDER_PLAY+"_"+lotteryId+"_"+pcode+"_"+playId;
 	}
 	
@@ -182,7 +196,7 @@ public class RedisConstant {
 	 * @param pcode
 	 * @return
 	 */
-	public final static String getKeyUserOrderMap(Long lotteryId, Long pcode){
+	public final static String getKeyUserOrderPlayMap(Long lotteryId, Long pcode){
 		return BET_USER_ORDER_PLAY_MAP+"_"+lotteryId+"_"+pcode;
 	}
 	
