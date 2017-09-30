@@ -183,6 +183,15 @@ public class RedisLock {
         return false;
     }
 
+    /**
+     * 是否已加锁
+     * @return
+     * @throws InterruptedException
+     */
+    public  boolean isLock() throws InterruptedException {
+    	String currentValueStr = this.get(lockKey);
+    	return currentValueStr!=null;
+    }
 
     /**
      * Acqurired lock release.
