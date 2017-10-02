@@ -7,6 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.junit.Test;
 
+import com.babel.common.core.util.BeanUtils;
 import com.babel.common.core.util.ObjectToMapUtil;
 
 
@@ -179,6 +180,7 @@ public class PerfTest {
 //				tmp=(RoleDTO)list.get(i).clone();
 				tmp=new RoleDTO();
 				FatherToChildUtils.fatherToChild(tmp, list.get(i));
+//				FatherToChildUtils.parentToChild(tmp, list.get(i));
 //				BeanUtils.copyProperties(tmp, list.get(i));
 //				System.out.println(tmp.getName());
 				tmpList.add(tmp);

@@ -35,7 +35,25 @@ public class FatherToChildUtils {
             	}
             }
         }  
-    }  
+    }
+    
+	public static void parentToChild(Object child, Object parent) throws Exception{
+		Method[] methods = parent.getClass().getMethods();// 得到父类所有方法
+		Method method=null;
+		String name=null;
+		for (int i=0; i<methods.length; i++) {// 遍历父类方法
+			method=methods[i];
+			name=method.getName();
+			if (name.startsWith("get") && !name.equals("getClass")) {// 得到父类的get方法
+				Object value = method.invoke(parent);// 通过get方法得到父类的值
+				// 尝试得到子类的set方法 method.getReturnType()：即得到返回类
+				Method zi_method = child.getClass().getMethod(method.getName().replaceFirst("get", "set"),
+						method.getReturnType());
+				zi_method.invoke(child, value);// 将父类的属性注入到子类里面去
+			}
+		}
+	}
+    
     /** 
     * 首字母大写，in:deleteDate，out:DeleteDate 
     */  
