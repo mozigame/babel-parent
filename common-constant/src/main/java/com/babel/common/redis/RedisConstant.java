@@ -17,6 +17,7 @@ public class RedisConstant {
 		,PLAYS("plays")
 		,PLAYS_ODDS("playsOdds")
 		,PLAYS_DESCS("playsDescs")
+		,PLAYS_MANAGE("playsManage")
 		,PLAYS_LIMIT("playsLimit");
 		private String code;
 		private dataMaxModifyDate(String code){
@@ -71,6 +72,10 @@ public class RedisConstant {
 	 * 下注数据状态-玩法-描述
 	 */
 	public final static String KEY_BET_STATUS_PLAYS_DESCS="_betStatusPlaysDescs";
+	/**
+	 * 下注数据状态-玩法-描述
+	 */
+	public final static String KEY_BET_STATUS_PLAYS_MANAGE="_betStatusPlaysManage";
 	
 	/**
 	 * 平台商id缓存,{appid, platInfoId}
