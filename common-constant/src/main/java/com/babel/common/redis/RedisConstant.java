@@ -12,14 +12,15 @@ public class RedisConstant {
 	public final static String KEY_DATA_MAX_MODIFY_TIME="_dataMaxModifyTime";
 	public static enum dataMaxModifyDate{
 		PLAT_INFO("platInfo")
-		,LOTTERY_STATUS("lotteryStatus")
+		,LOTTERY_STATUS("lotteryStatus")//玩法状态或玩法信息
 //		,LOTTERY("lotteryInfo")
 		,PLAYS("plays")
-		,PLAYS_ODDS("playsOdds")
-		,PLAYS_DESCS("playsDescs")
-		,PLAYS_MANAGE("playsManage")
-		,PLAYS_LIMIT("playsLimit")
-		,QUOTA_LIMIT("quotaLimit");
+		,PERIOD_DATA("periodData")	//奖期数据
+		,PLAYS_ODDS("playsOdds")	//玩法赔率
+		,PLAYS_DESCS("playsDescs")	//玩法描述
+		,PLAYS_MANAGE("playsManage")//玩法开关
+		,PLAYS_LIMIT("playsLimit")	//玩法限制
+		,QUOTA_LIMIT("quotaLimit");	//投注限制
 		private String code;
 		private dataMaxModifyDate(String code){
 			this.code=code;
@@ -61,6 +62,10 @@ public class RedisConstant {
 	 * 下注数据状态-玩法
 	 */
 	public final static String KEY_BET_STATUS_PLAYS="_betStatusPlays";
+	/**
+	 * 下注数据状态-奖期数据
+	 */
+	public final static String KEY_BET_STATUS_PERIOD_DATA="_betStatusPeriodData";
 	/**
 	 * 下注数据状态-玩法-赔率
 	 */
