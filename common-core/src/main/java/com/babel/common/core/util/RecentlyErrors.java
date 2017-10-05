@@ -44,6 +44,10 @@ public class RecentlyErrors {
 		}
 		return info;
 	}
+	
+	public static Map<String, ErrorInfo> getErrorInfoMap(){
+		return errorInfoMap;
+	}
 }
 
 class ErrorInfo{

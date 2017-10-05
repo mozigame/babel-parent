@@ -13,7 +13,7 @@ public class ScheduleConstant {
     /**
      * 订单异步保存间隔
      */
-    public static final int cacheSaveBetOrderAsync= 200;   //0.2秒
+    public static final int cacheSaveBetOrderAsync= 300;   //0.3秒
   
 
 }
