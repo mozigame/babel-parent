@@ -178,8 +178,9 @@ public class PerfTest {
 			RoleDTO tmp=null;
 			for(int i=0; i<size; i++){
 //				tmp=(RoleDTO)list.get(i).clone();
-				tmp=new RoleDTO();
-				FatherToChildUtils.fatherToChild(tmp, list.get(i));
+				tmp=new RoleDTO(list.get(i));
+//				tmp=new RoleDTO();
+//				FatherToChildUtils.fatherToChild(tmp, list.get(i));
 //				FatherToChildUtils.parentToChild(tmp, list.get(i));
 //				BeanUtils.copyProperties(tmp, list.get(i));
 //				System.out.println(tmp.getName());
