@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.junit.Test;
 
-import com.babel.common.core.util.BeanUtils;
+import com.babel.common.core.util.FatherToChildUtils;
 import com.babel.common.core.util.ObjectToMapUtil;
 
 
@@ -188,5 +188,11 @@ public class PerfTest {
 			
 			System.out.println("-----count="+k+" size="+list.size()+" total="+total+" time="+(System.currentTimeMillis()-time));	
 		}
+	}
+	
+	@Test
+	public void testGenerateChildClass() throws Exception{
+		String classInfo=FatherToChildUtils.genreateChildClass("RoleDTO", RoleVO.class);
+		System.out.println("----classInfo="+classInfo);
 	}
 }
