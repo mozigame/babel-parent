@@ -65,6 +65,8 @@ public class FatherToChildUtils {
 		Method method=null;
 		String name=null;
 		String classInfo="\n public class "+childClassName+" extends "+parent.getSimpleName()+"{\n";
+		classInfo+="	public "+childClassName+"(){\n";
+		classInfo+="	}\n";
 		classInfo+="	public "+childClassName+"("+parent.getSimpleName()+" data){\n";
 		for (int i=0; i<methods.length; i++) {// 遍历父类方法
 			method=methods[i];
@@ -73,6 +75,15 @@ public class FatherToChildUtils {
 				classInfo+="		this."+name.replaceFirst("get", "set")+"(data."+name+"());\n";
 			}
 		}
+		classInfo+="	}\n";
+		classInfo+="\n";
+		classInfo+="	public static List<"+childClassName+"> toList(List<"+parent.getSimpleName()+"> list){\n";
+		classInfo+="		List<"+childClassName+"> retList=new ArrayList<>();\n";
+		classInfo+="		int size=list.size();\n";
+		classInfo+="		for(int i=0; i<size; i++){\n";
+		classInfo+="			retList.add(new "+childClassName+"(list.get(i)));\n";
+		classInfo+="		}\n";
+		classInfo+="		return retList;\n";
 		classInfo+="	}\n";
 		classInfo+="}\n";
 		return classInfo;
