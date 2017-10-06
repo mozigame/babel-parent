@@ -149,6 +149,9 @@ public class RedisConstant {
 	 * 存member的orderId
 	 */
 	public final static String BET_USER_ORDER_PDATE="_bet_userOrderPdate";
+	
+	public final static String BET_USER_ORDER_STATUS_SET="_bet_userOrStatusSet";
+	
 	/**
 	 * 存member的parentOrderId，即追号首条记录
 	 */
@@ -243,6 +246,10 @@ public class RedisConstant {
 	 */
 	public final static String getKeyUserOrderPdate(Long memberId, Long lotteryId, Long pdate){
 		return BET_USER_ORDER_PDATE+"_"+memberId+"_"+lotteryId+"_"+pdate;
+	}
+	
+	public final static String getKeyOrderStatusSet(Long memberId, Long lotteryId, Long pdate, Integer orderStatus){
+		return BET_USER_ORDER_STATUS_SET+"_"+memberId+"_"+lotteryId+"_"+pdate+"_"+orderStatus;
 	}
 	
 	/**
