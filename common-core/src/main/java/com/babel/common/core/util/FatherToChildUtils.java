@@ -1,5 +1,6 @@
 package com.babel.common.core.util;
 
+import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
@@ -64,7 +65,9 @@ public class FatherToChildUtils {
 		Method[] methods = parent.getMethods();// 得到父类所有方法
 		Method method=null;
 		String name=null;
-		String classInfo="\n public class "+childClassName+" extends "+parent.getSimpleName()+"{\n";
+		String classInfo="\n public class "+childClassName+" extends "+parent.getSimpleName()+" implements Serializable{\n";
+		classInfo+="	private static final long serialVersionUID = 1L;\n";
+		classInfo+="\n";
 		classInfo+="	public "+childClassName+"(){\n";
 		classInfo+="	}\n";
 		classInfo+="	public "+childClassName+"("+parent.getSimpleName()+" data){\n";

@@ -159,6 +159,8 @@ public class RedisConstant {
 	 */
 	public final static String BET_USER_CHASE_PDATE_DETAIL_MAP="_betUserChaseDetailMap";
 	
+	public final static String BET_INTERVAL="_betInval_";//股注限制
+	
 //	public final static String BET_USER_ORDER_PDATE_SET="_bet_userOrderPdateSet";
 	
 	/**
@@ -299,5 +301,9 @@ public class RedisConstant {
 	}
 	public final static String getKeyPlatBalAmountLock(Integer acType){
 		return LOGIN_KEY_PLAT_BAL_AMOUNT_LOCK+"_"+acType;
+	}
+	
+	public final static String getBetInterval(Long memberId, Long lotteryId){
+		return BET_INTERVAL+"_"+lotteryId+"_"+memberId;
 	}
 }
