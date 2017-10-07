@@ -145,10 +145,10 @@ public class RedisConstant {
 	
 	public final static String BET_USER_ORDER_PLAY_MAP="_bet_userOrderPlayMap";
 	
-	/**
-	 * 存member的orderId
-	 */
-	public final static String BET_USER_ORDER_PDATE="_bet_userOrderPdate";
+//	/**
+//	 * 存member的orderId
+//	 */
+//	public final static String BET_USER_ORDER_PDATE="_bet_userOrderPdate";
 	
 	/**
 	 * 用户下注状态数据
@@ -163,8 +163,8 @@ public class RedisConstant {
 	/**
 	 * 存member的parentOrderId，即追号首条记录
 	 */
-	public final static String BET_USER_CHASE_PDATE="_bet_userChasePdate";
-	public final static String BET_USER_CHASE_PDATE_FIRST="_bet_userChasePdateFirst";
+//	public final static String BET_USER_CHASE_PDATE="_bet_userChasePdate";
+//	public final static String BET_USER_CHASE_PDATE_FIRST="_bet_userChasePdateFirst";
 	/**
 	 * 存parentOrderId对应orderId关系
 	 */
@@ -244,17 +244,17 @@ public class RedisConstant {
 		return BET_USER_ORDER_PLAY_MAP+"_"+lotteryId+"_"+pcode;
 	}
 	
-	/**
-	 * 类型：LIST
-	 * 存member的orderId
-	 * @param memberId
-	 * @param lotteryId
-	 * @param pdate
-	 * @return
-	 */
-	public final static String getKeyUserOrderPdate(Long memberId, Long lotteryId, Long pdate){
-		return BET_USER_ORDER_PDATE+"_"+memberId+"_"+lotteryId+"_"+pdate;
-	}
+//	/**
+//	 * 类型：LIST
+//	 * 存member的orderId
+//	 * @param memberId
+//	 * @param lotteryId
+//	 * @param pdate
+//	 * @return
+//	 */
+//	public final static String getKeyUserOrderPdate(Long memberId, Long lotteryId, Long pdate){
+//		return BET_USER_ORDER_PDATE+"_"+memberId+"_"+lotteryId+"_"+pdate;
+//	}
 	
 	/**
 	 * 用户注单状态数据
@@ -269,29 +269,29 @@ public class RedisConstant {
 	}
 
 	
-	/**
-	 * 类型：LIST
-	 * 存member的parentOrderId，即追号首条记录
-	 * @param memberId
-	 * @param lotteryId
-	 * @param pdate
-	 * @return
-	 */
-	public final static String getKeyUserChasePdate(Long memberId, Long lotteryId, Long pdate){
-		return BET_USER_CHASE_PDATE+"_"+memberId+"_"+lotteryId+"_"+pdate;
-	}
+//	/**
+//	 * 类型：LIST
+//	 * 存member的parentOrderId，即追号首条记录
+//	 * @param memberId
+//	 * @param lotteryId
+//	 * @param pdate
+//	 * @return
+//	 */
+//	public final static String getKeyUserChasePdate(Long memberId, Long lotteryId, Long pdate){
+//		return BET_USER_CHASE_PDATE+"_"+memberId+"_"+lotteryId+"_"+pdate;
+//	}
 	
-	/**
-	 * 类型：LIST
-	 * 存member的parentOrderId，即追号首条记录
-	 * @param memberId
-	 * @param lotteryId
-	 * @param pdate
-	 * @return
-	 */
-	public final static String getKeyUserChaseFirstPdate(Long memberId, Long lotteryId, Long pdate){
-		return BET_USER_CHASE_PDATE_FIRST+"_"+memberId+"_"+lotteryId+"_"+pdate;
-	}
+//	/**
+//	 * 类型：LIST
+//	 * 存member的parentOrderId，即追号首条记录
+//	 * @param memberId
+//	 * @param lotteryId
+//	 * @param pdate
+//	 * @return
+//	 */
+//	public final static String getKeyUserChaseFirstPdate(Long memberId, Long lotteryId, Long pdate){
+//		return BET_USER_CHASE_PDATE_FIRST+"_"+memberId+"_"+lotteryId+"_"+pdate;
+//	}
 	
 	/**
 	 * 类型：MAP
