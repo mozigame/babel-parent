@@ -150,7 +150,15 @@ public class RedisConstant {
 	 */
 	public final static String BET_USER_ORDER_PDATE="_bet_userOrderPdate";
 	
+	/**
+	 * 用户下注状态数据
+	 */
 	public final static String BET_USER_ORDER_STATUS_SET="_bet_userOrStatusSet";
+	
+//	/**
+//	 * 用户追号状态数据
+//	 */
+//	public final static String BET_USER_CHASE_STATUS_SET="_bet_userOcStatusSet";//用户
 	
 	/**
 	 * 存member的parentOrderId，即追号首条记录
@@ -248,9 +256,18 @@ public class RedisConstant {
 		return BET_USER_ORDER_PDATE+"_"+memberId+"_"+lotteryId+"_"+pdate;
 	}
 	
-	public final static String getKeyOrderStatusSet(Long memberId, Long lotteryId, Long pdate, Integer orderStatus){
-		return BET_USER_ORDER_STATUS_SET+"_"+memberId+"_"+lotteryId+"_"+pdate+"_"+orderStatus;
+	/**
+	 * 用户注单状态数据
+	 * @param memberId
+	 * @param lotteryId
+	 * @param pdate
+	 * @param orderStatus
+	 * @return
+	 */
+	public final static String getKeyUserOrderStatusSet(Long lotteryId, Long pdate){
+		return BET_USER_ORDER_STATUS_SET+"_"+lotteryId+"_"+pdate;
 	}
+
 	
 	/**
 	 * 类型：LIST
