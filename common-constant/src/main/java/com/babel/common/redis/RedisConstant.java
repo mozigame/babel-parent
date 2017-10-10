@@ -90,24 +90,7 @@ public class RedisConstant {
 	
 	public final static String KEY_BET_STATUS_QUOTA_LIMIT="_betStatusQuotaLimit";
 	
-	/**
-	 * 平台商id缓存,{appid, platInfoId}
-	 */
-	public final static String LOGIN_KEY_PLAT_ID="_platIdMap";
 	
-	/**
-	 * 登入用户member,{memberId, memberVO}
-	 * 处理位置：uaa,memberService.findOneWithAuthoritiesByLogin
-	 * 处理方式，用户首次登入缓存
-	 */
-	public final static String LOGIN_KEY_MEMBER="_memberMap";
-	/**
-	 * 登入用户login的id, {login:memberId}
-	 * 处理位置：uaa,memberService.findOneWithAuthoritiesByLogin
-	 * 处理方式，用户首次登入缓存
-	 * 
-	 */
-	public final static String LOGIN_KEY_MEMBER_ID="_memberIdMap";
 	
 //	public final static String LOGIN_KEY_MEMBER_AC_TYPE="_memberAcTypeMap";
 //	
@@ -217,8 +200,8 @@ public class RedisConstant {
 	 * @param playId
 	 * @return
 	 */
-	public final static String getKeyUserOrderMap(Long lotteryId, Long pdate){
-		return BET_USER_ORDER_MAP+"_"+lotteryId+"_"+pdate;
+	public final static String getKeyUserOrderMap(Long memberId, Long lotteryId, Long pdate){
+		return BET_USER_ORDER_MAP+"_"+memberId+"_"+lotteryId+"_"+pdate;
 	}
 	
 	/**
@@ -264,8 +247,8 @@ public class RedisConstant {
 	 * @param orderStatus
 	 * @return
 	 */
-	public final static String getKeyUserOrderStatusSet(Long lotteryId, Long pdate){
-		return BET_USER_ORDER_STATUS_SET+"_"+lotteryId+"_"+pdate;
+	public final static String getKeyUserOrderStatusSet(Long memberId, Long lotteryId, Long pdate){
+		return BET_USER_ORDER_STATUS_SET+"_"+memberId+"_"+lotteryId+"_"+pdate;
 	}
 
 	
