@@ -200,8 +200,8 @@ public class RedisConstant {
 	 * @param playId
 	 * @return
 	 */
-	public final static String getKeyUserOrderMap(Long memberId, Long lotteryId, Long pdate){
-		return BET_USER_ORDER_MAP+"_"+memberId+"_"+lotteryId+"_"+pdate;
+	public final static String getKeyUserOrderMap(Long lotteryId, Long pdate){
+		return BET_USER_ORDER_MAP+"_"+lotteryId+"_"+pdate;
 	}
 	
 	/**
