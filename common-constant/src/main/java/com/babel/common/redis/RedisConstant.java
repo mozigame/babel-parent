@@ -147,7 +147,7 @@ public class RedisConstant {
 	 * 存member的parentOrderId，即追号首条记录
 	 */
 //	public final static String BET_USER_CHASE_PDATE="_bet_userChasePdate";
-//	public final static String BET_USER_CHASE_PDATE_FIRST="_bet_userChasePdateFirst";
+	public final static String BET_USER_CHASE_FIRST="_bet_userChaseFirstSet";
 	/**
 	 * 存parentOrderId对应orderId关系
 	 */
@@ -251,6 +251,7 @@ public class RedisConstant {
 		return BET_USER_ORDER_STATUS_SET+"_"+memberId+"_"+lotteryId+"_"+pdate;
 	}
 
+
 	
 //	/**
 //	 * 类型：LIST
@@ -264,17 +265,17 @@ public class RedisConstant {
 //		return BET_USER_CHASE_PDATE+"_"+memberId+"_"+lotteryId+"_"+pdate;
 //	}
 	
-//	/**
-//	 * 类型：LIST
-//	 * 存member的parentOrderId，即追号首条记录
-//	 * @param memberId
-//	 * @param lotteryId
-//	 * @param pdate
-//	 * @return
-//	 */
-//	public final static String getKeyUserChaseFirstPdate(Long memberId, Long lotteryId, Long pdate){
-//		return BET_USER_CHASE_PDATE_FIRST+"_"+memberId+"_"+lotteryId+"_"+pdate;
-//	}
+	/**
+	 * 类型：LIST
+	 * 存member的parentOrderId，即追号首条记录
+	 * @param memberId
+	 * @param lotteryId
+	 * @param pdate
+	 * @return
+	 */
+	public final static String getKeyUserChaseFirstSet(Long memberId, Long lotteryId, Long pdate){
+		return BET_USER_CHASE_FIRST+"_"+memberId+"_"+lotteryId+"_"+pdate;
+	}
 	
 	/**
 	 * 类型：MAP
