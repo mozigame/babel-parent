@@ -8,7 +8,7 @@ import java.util.Map;
  * created by roachjiang 2017/9/28
  */
 public enum StatusLock {
-    ACTIVE(1, "启用中"),
+    ENABLED(1, "启用中"),
     LOCK(0, "已冻结");
 
 
