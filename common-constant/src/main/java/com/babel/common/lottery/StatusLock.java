@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public enum StatusLock {
     ENABLED(1, "启用中"),
-    LOCK(0, "已冻结");
+    LOCKED(0, "已冻结");
 
 
     private static Map<Integer, StatusLock> map = new HashMap<>();
