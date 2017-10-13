@@ -9,7 +9,7 @@ import java.util.Map;
  * Time: 18:27
  * 开奖状态
  */
-public enum PrizeStatus {
+public enum DrawPrizeStatus {
 
     un_draw(0, "未开奖"),
     draw(1, "已开奖");
@@ -17,14 +17,14 @@ public enum PrizeStatus {
     private Integer code;
     private String msg;
 
-    private static Map<Integer, PrizeStatus> map =new HashMap<>();
+    private static Map<Integer, DrawPrizeStatus> map =new HashMap<>();
     static {
-        for (PrizeStatus pj : PrizeStatus.values()) {
+        for (DrawPrizeStatus pj : DrawPrizeStatus.values()) {
             map.put(pj.code, pj);
         }
     }
 
-    PrizeStatus(Integer code,String msg) {
+    DrawPrizeStatus(Integer code, String msg) {
         this.code = code;
         this.msg = msg;
     }
@@ -37,7 +37,7 @@ public enum PrizeStatus {
         return this.msg;
     }
 
-    public static PrizeStatus parse(Integer code) {
+    public static DrawPrizeStatus parse(Integer code) {
         return map.get(code);
     }
 
