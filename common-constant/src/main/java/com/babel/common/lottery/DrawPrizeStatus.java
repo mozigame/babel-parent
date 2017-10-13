@@ -11,8 +11,8 @@ import java.util.Map;
  */
 public enum DrawPrizeStatus {
 
-    un_draw(0, "未开奖"),
-    draw(1, "已开奖");
+    UN_DRAW(0, "未开奖"),
+    DRAW_SUCCESS(1, "已开奖");
 
     private Integer code;
     private String msg;
