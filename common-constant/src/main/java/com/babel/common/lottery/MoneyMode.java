@@ -22,7 +22,7 @@ public enum MoneyMode {
         }
     }
 
-    private char code;
+    private Character code;
     private String mes;
 
     MoneyMode(char code, String mes) {
@@ -30,7 +30,7 @@ public enum MoneyMode {
         this.mes = mes;
     }
 
-    public int code() {
+    public Character code() {
         return code;
     }
 
