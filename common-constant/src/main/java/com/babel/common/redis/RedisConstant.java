@@ -17,6 +17,7 @@ public class RedisConstant {
 //		,LOTTERY("lotteryInfo")
 		,PLAYS("plays")
 		,PERIOD_DATA("periodData")	//奖期数据
+		,PRIZE_NUMBER("prizeNumber")	//奖期数据
 		,PLAYS_ODDS("playsOdds")	//玩法赔率
 		,PLAYS_DESCS("playsDescs")	//玩法描述
 		,PLAYS_MANAGE("playsManage")//玩法开关
@@ -71,6 +72,10 @@ public class RedisConstant {
 	 * 下注数据状态-奖期数据
 	 */
 	public final static String KEY_BET_STATUS_PERIOD_DATA="_betStatusPeriodData";
+	/**
+	 * 下注数据状态-奖期数据
+	 */
+	public final static String KEY_BET_STATUS_PRIZE_NUMBER="_betStatusPrizeNumber";
 	/**
 	 * 下注数据状态-玩法-赔率
 	 */

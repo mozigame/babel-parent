@@ -28,6 +28,20 @@ public class RecentlyErrors {
 		errorInfoMap.put(keys, error);
 	}
 	
+	public static void logExp(Class clazz, String key, Exception e){
+		String keys=clazz.getSimpleName()+"."+key;
+		ErrorInfo error=errorInfoMap.get(keys);
+		if(error==null){
+			error=new ErrorInfo();
+			error.setCount(0);
+		}
+		error.setCount(error.getCount()+1);
+		error.setLastTime(System.currentTimeMillis());
+		error.setErrorInfo(e.getClass().getSimpleName()+":"+e.getMessage());
+		
+		errorInfoMap.put(keys, error);
+	}
+	
 	public static void logExp(Class clazz, String key, RetData retData){
 		String errorInfo="err:"+retData.getErr()+",msg:"+retData.getMsg();
 		logExp(clazz, key, errorInfo);
