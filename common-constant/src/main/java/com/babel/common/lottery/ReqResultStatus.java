@@ -8,20 +8,20 @@ import java.util.Map;
  * Date: 2017/10/17
  * Time: 20:53
  */
-public enum ReqResultType {
+public enum ReqResultStatus {
 
     failed(0),
     success(1);
 
     private int status;
 
-    private final static Map<Integer, ReqResultType> map = new HashMap<>();
+    private final static Map<Integer, ReqResultStatus> map = new HashMap<>();
     static {
-        for (ReqResultType oj : ReqResultType.values()) {
+        for (ReqResultStatus oj : ReqResultStatus.values()) {
             map.put(oj.status, oj);
         }
     }
-    ReqResultType(Integer status) {
+    ReqResultStatus(Integer status) {
         this.status =status;
     }
 
@@ -29,7 +29,7 @@ public enum ReqResultType {
         return status;
     }
 
-    public static ReqResultType parse(int code) {
+    public static ReqResultStatus parse(int code) {
         return map.get(code);
     }
 }
