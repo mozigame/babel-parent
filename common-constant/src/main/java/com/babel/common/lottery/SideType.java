@@ -11,8 +11,8 @@ import java.util.Map;
  */
 public enum SideType {
 
-    official(1, "时时彩-官方彩"),
-    dual(2, "时时彩-双面彩");
+    official(1, "官方彩"),
+    dual(2, "双面彩");
 	
 
 
