@@ -4,6 +4,9 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
+
+import com.babel.common.core.util.SpringContextUtil;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -14,14 +17,14 @@ import redis.clients.jedis.JedisPoolConfig;
 public class RedisManager {
 	private static Logger logger =  Logger.getLogger(RedisManager.class);
     
-    @Value("${redis.host}")
+//    @Value("${redis.host}")
     private String host;
  
-    @Value("${redis.port}")
+//    @Value("${redis.port}")
     private int port;
-    @Value("${redis.database}")
+//    @Value("${redis.database}")
     private int database;
-    @Value("${redis.maxWait}")
+//    @Value("${redis.maxWait}")
     private int maxWait;
     
 //    @Value("${redis.password}")
@@ -34,6 +37,8 @@ public class RedisManager {
  
     public RedisManager() {
     }
+    
+    private RedisTemplate redisTemplate;
  
     /**
      * 初始化方法
@@ -45,8 +50,11 @@ public class RedisManager {
             throw new NullPointerException("找不到redis配置");
         }
         if(jedisPool == null){
+        	RedisTemplate redisTemplate=(RedisTemplate)SpringContextUtil.getBean("redisTemplate");
+        	this.redisTemplate=redisTemplate;
+//        	redisTemplate.getConnectionFactory().getClusterConnection().
             //jedisPool = JedisUtil.getJedisPool();
-            jedisPool = new JedisPool(new JedisPoolConfig(), host, port, maxWait);
+//            jedisPool = new JedisPool(new JedisPoolConfig(), host, port, maxWait);
         }
     }
     
@@ -61,11 +69,12 @@ public class RedisManager {
      */
     public byte[] get(byte[] key) {
         byte[] value = null;
-        Jedis jedis = jedisPool.getResource();
+//        Jedis jedis = jedisPool.getResource();
         try {
-            value = jedis.get(key);
+//            value = jedis.get(key);
+        	value = redisTemplate.getConnectionFactory().getConnection().get(key);
         } finally {
-            jedisPool.returnResource(jedis);
+//            jedisPool.returnResource(jedis);
         }
         return value;
     }
@@ -76,11 +85,14 @@ public class RedisManager {
      */
     public String get(String key) {
         String value=null;
-        Jedis jedis = jedisPool.getResource();
+//        Jedis jedis = jedisPool.getResource();
         try {
-            value = jedis.get(key);
+//            value = jedis.get(key);
+//        	value = redisTemplate.getConnectionFactory().getConnection().get(key.getBytes());
+        	byte[] bytes = get(key.getBytes());
+        	value=new String(bytes);
         } finally {
-            jedisPool.returnResource(jedis);
+//            jedisPool.returnResource(jedis);
         }
         return value;
     }
@@ -92,14 +104,15 @@ public class RedisManager {
      * @return
      */
     public byte[] set(byte[] key, byte[] value) {
-        Jedis jedis = jedisPool.getResource();
+//        Jedis jedis = jedisPool.getResource();
         try {
-            jedis.set(key, value);
+//            jedis.set(key, value);
+        	redisTemplate.getConnectionFactory().getConnection().set(key, value);
             if (this.expire != 0) {
-                jedis.expire(key, this.expire);
+            	redisTemplate.getConnectionFactory().getConnection().expire(key, this.expire);
             }
         } finally {
-            jedisPool.returnResource(jedis);
+//            jedisPool.returnResource(jedis);
         }
         return value;
     }
@@ -110,14 +123,16 @@ public class RedisManager {
      * @return
      */
     public String set(String key,String value) {
-        Jedis jedis = jedisPool.getResource();
+//        Jedis jedis = jedisPool.getResource();
         try {
-            jedis.set(key, value);
-            if (this.expire != 0) {
-                jedis.expire(key, this.expire);
-            }
+//            jedis.set(key, value);
+        	this.set(key.getBytes(), value.getBytes());
+//            if (this.expire != 0) {
+////                jedis.expire(key, this.expire);
+//            	redisTemplate.getConnectionFactory().getConnection().expire(key.getBytes(), arg1)
+//            }
         } finally {
-            jedisPool.returnResource(jedis);
+//            jedisPool.returnResource(jedis);
         }
         return value;
     }
@@ -130,14 +145,16 @@ public class RedisManager {
      * @return
      */
     public byte[] set(byte[] key, byte[] value, int expire) {
-        Jedis jedis = jedisPool.getResource();
+//        Jedis jedis = jedisPool.getResource();
         try {
-            jedis.set(key, value);
+//            jedis.set(key, value);
+        	redisTemplate.getConnectionFactory().getConnection().set(key, value);
             if (expire != 0) {
-                jedis.expire(key, expire);
+//                jedis.expire(key, expire);
+            	redisTemplate.getConnectionFactory().getConnection().expire(key, expire);
             }
         } finally {
-            jedisPool.returnResource(jedis);
+//            jedisPool.returnResource(jedis);
         }
         return value;
     }
@@ -149,14 +166,15 @@ public class RedisManager {
      * @return
      */
     public String set(String key,String value, int expire) {
-        Jedis jedis = jedisPool.getResource();
+//        Jedis jedis = jedisPool.getResource();
         try {
-            jedis.set(key, value);
-            if (expire != 0) {
-                jedis.expire(key, expire);
-            }
+//            jedis.set(key, value);
+//            if (expire != 0) {
+//                jedis.expire(key, expire);
+//            }
+        	this.set(key.getBytes(), value.getBytes(), expire);
         } finally {
-            jedisPool.returnResource(jedis);
+//            jedisPool.returnResource(jedis);
         }
         return value;
     }
@@ -166,11 +184,12 @@ public class RedisManager {
      * @param key
      */
     public void del(byte[] key) {
-        Jedis jedis = jedisPool.getResource();
+//        Jedis jedis = jedisPool.getResource();
         try {
-            jedis.del(key);
+//            jedis.del(key);
+        	redisTemplate.getConnectionFactory().getConnection().del(key);
         } finally {
-            jedisPool.returnResource(jedis);
+//            jedisPool.returnResource(jedis);
         }
     }
     /**
@@ -178,11 +197,12 @@ public class RedisManager {
      * @param key
      */
     public void del(String key) {
-        Jedis jedis = jedisPool.getResource();
+//        Jedis jedis = jedisPool.getResource();
         try {
-            jedis.del(key);
+//            jedis.del(key);
+        	this.del(key.getBytes());
         } finally {
-            jedisPool.returnResource(jedis);
+//            jedisPool.returnResource(jedis);
         }
     }
  
@@ -192,7 +212,7 @@ public class RedisManager {
     public void flushDB() {
         Jedis jedis = jedisPool.getResource();
         try {
-            jedis.flushDB();
+//            jedis.flushDB();//禁止
         } finally {
             jedisPool.returnResource(jedis);
         }
@@ -203,11 +223,11 @@ public class RedisManager {
      */
     public Long dbSize() {
         Long dbSize = 0L;
-        Jedis jedis = jedisPool.getResource();
+//        Jedis jedis = jedisPool.getResource();
         try {
-            dbSize = jedis.dbSize();
+            dbSize = redisTemplate.getConnectionFactory().getConnection().dbSize();
         } finally {
-            jedisPool.returnResource(jedis);
+//            jedisPool.returnResource(jedis);
         }
         return dbSize;
     }
@@ -219,11 +239,11 @@ public class RedisManager {
      */
     public Set<byte[]> keys(String pattern) {
         Set<byte[]> keys = null;
-        Jedis jedis = jedisPool.getResource();
+//        Jedis jedis = jedisPool.getResource();
         try {
-            keys = jedis.keys(pattern.getBytes());
+            keys = redisTemplate.getConnectionFactory().getConnection().keys(pattern.getBytes());
         } finally {
-            jedisPool.returnResource(jedis);
+//            jedisPool.returnResource(jedis);
         }
         return keys;
     }

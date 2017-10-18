@@ -170,7 +170,7 @@ public class RedisCache<K, V> implements Cache<K, V> {
     public void clear() throws CacheException {
         logger.debug("从redis中删除所有元素");
         try {
-            cache.flushDB();
+//            cache.flushDB(); //禁止
         } catch (Throwable t) {
             throw new CacheException(t);
         }
