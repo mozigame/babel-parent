@@ -52,6 +52,7 @@ public class RedisManager {
         if(jedisPool == null){
         	RedisTemplate redisTemplate=(RedisTemplate)SpringContextUtil.getBean("redisTemplate");
         	this.redisTemplate=redisTemplate;
+        	logger.info("-------redisManager clusterInfo----"+redisTemplate.getConnectionFactory().getClusterConnection().clusterGetClusterInfo());
 //        	redisTemplate.getConnectionFactory().getClusterConnection().
             //jedisPool = JedisUtil.getJedisPool();
 //            jedisPool = new JedisPool(new JedisPoolConfig(), host, port, maxWait);
