@@ -1,11 +1,14 @@
 package com.babel.common.core.redis;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
 import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 
+import com.babel.common.core.util.RedisUtil;
 import com.babel.common.core.util.SpringContextUtil;
 
 import redis.clients.jedis.Jedis;
@@ -44,19 +47,22 @@ public class RedisManager {
      * 初始化方法
      */
     public void init(){
-    	logger.info("-------redisManager init----"+this.host);
-        if(null == host || 0 == port){
-            logger.error("请初始化redis配置文件！");
-            throw new NullPointerException("找不到redis配置");
-        }
-        if(jedisPool == null){
-        	RedisTemplate redisTemplate=(RedisTemplate)SpringContextUtil.getBean("redisTemplate");
+    	logger.info("-------redisManager init----");
+//        if(null == host || 0 == port){
+//            logger.error("请初始化redis配置文件！");
+//            throw new NullPointerException("找不到redis配置");
+//        }
+//        if(jedisPool == null){
+        	RedisTemplate redisTemplate=RedisUtil.getRedisTemplate();
         	this.redisTemplate=redisTemplate;
+        	if(redisTemplate==null){
+        		logger.warn("redisTemplate not found");
+        	}
         	logger.info("-------redisManager clusterInfo----"+redisTemplate.getConnectionFactory().getClusterConnection().clusterGetClusterInfo());
 //        	redisTemplate.getConnectionFactory().getClusterConnection().
             //jedisPool = JedisUtil.getJedisPool();
 //            jedisPool = new JedisPool(new JedisPoolConfig(), host, port, maxWait);
-        }
+//        }
     }
     
     public static JedisPool getJedisPool(){
