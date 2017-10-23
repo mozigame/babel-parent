@@ -33,8 +33,8 @@ public class AresLogAspect {
     private HttpServletResponse response;
 
     @Pointcut("(execution(public * com.babel.*.web.rest.order.*Resource.*(..))) " +
-        "|| (execution(public * com.babel.*.web.rest.*Resource.*(..))) " +
-        "|| (execution(public * com.babel.*.web.rest.feign.*Resource.*(..)))" )
+            "|| (execution(public * com.babel.*.web.rest.*Resource.*(..))) " +
+            "|| (execution(public * com.babel.*.web.rest.feign.*Resource.*(..)))")
     public void webLog() {
     }
 
@@ -55,7 +55,7 @@ public class AresLogAspect {
 
     @AfterReturning(returning = "ret", pointcut = "webLog()")
     public void doAfterReq(Object ret) {
-        if (record != null) {
+        try {
             // 记录下请求内容
             StringBuffer buf = new StringBuffer()
                     .append(DateUtils.format(record.getDate(), "yyyy-MM-dd HH:mm:ss,S"))
@@ -78,6 +78,8 @@ public class AresLogAspect {
             // 处理完请求，返回内容
             logger.info(buf.toString());
             clearParam();
+        } catch (Exception e) {
+            logger.error("print req log error,", e);
         }
     }
 
