@@ -54,29 +54,31 @@ public class AresLogAspect {
     }
 
     @AfterReturning(returning = "ret", pointcut = "webLog()")
-    public void doAfterReq(Object ret) throws Throwable {
-        // 记录下请求内容
-        StringBuffer buf = new StringBuffer()
-                .append(DateUtils.format(record.getDate(), "yyyy-MM-dd HH:mm:ss,S"))
-                .append(SPLIT)
-                .append(record.getRequestId())
-                .append(SPLIT)
-                .append(record.getReqUri())
-                .append(SPLIT)
-                .append(record.getMethod())
-                .append(SPLIT)
-                .append(System.currentTimeMillis() - spendTime)
-                .append(SPLIT)
-                .append(response.getStatus())
-                .append(SPLIT)
-                .append(buildParameterString(record.getParameters()))
-                .append(SPLIT)
-                .append(record.getIp())
-                .append(SPLIT)
-                .append(JSON.toJSONString(ret));
-        // 处理完请求，返回内容
-        logger.info(buf.toString());
-        clearParam();
+    public void doAfterReq(Object ret) {
+        if (record != null) {
+            // 记录下请求内容
+            StringBuffer buf = new StringBuffer()
+                    .append(DateUtils.format(record.getDate(), "yyyy-MM-dd HH:mm:ss,S"))
+                    .append(SPLIT)
+                    .append(record.getRequestId())
+                    .append(SPLIT)
+                    .append(record.getReqUri())
+                    .append(SPLIT)
+                    .append(record.getMethod())
+                    .append(SPLIT)
+                    .append(System.currentTimeMillis() - spendTime)
+                    .append(SPLIT)
+                    .append(response.getStatus())
+                    .append(SPLIT)
+                    .append(buildParameterString(record.getParameters()))
+                    .append(SPLIT)
+                    .append(record.getIp())
+                    .append(SPLIT)
+                    .append(JSON.toJSONString(ret));
+            // 处理完请求，返回内容
+            logger.info(buf.toString());
+            clearParam();
+        }
     }
 
     private void clearParam() {
