@@ -11,6 +11,7 @@ public enum LotteryType {
     SSC(1, "时时彩"),//shi shi cai
     ESF(2, "11选5"),//Eleven select file
     Q3(3, "快3"),//quick 3
+    BJPK10(4, "北京PK10"),//beijing pk10
     SIX(6, "六合彩");//six lottery
 	
 
