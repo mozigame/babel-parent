@@ -54,7 +54,7 @@ public class TaskExecutorUtils {
 		TaskExecutor taskExecutor=taskExecutorMap.get(keyName);
 		lastDateMap.put(keyName, new Date());
 		if(taskExecutor!=null){
-			loadThreadInfoAsync(sysType);//异步更新配置信息
+//			loadThreadInfoAsync(sysType);//异步更新配置信息
 			return taskExecutor;
 		}
 		synchronized (keyName) {
@@ -76,7 +76,7 @@ public class TaskExecutorUtils {
 					poolInfo.setName(threadNamePrefix);
 					poolInfoVO=poolInfo;
 					poolInfoMap.put(poolInfo.getCode(), poolInfo);
-					savePoolInfoList(sysType, taskExecutor, poolInfo);
+//					savePoolInfoList(sysType, taskExecutor, poolInfo);
 				}
 				
 				logger.info("-----init--getTaskExecutorInstance--"+keyName+" init:"+threadNamePrefix+" taskExecutor="+taskExecutor);
@@ -145,21 +145,21 @@ public class TaskExecutorUtils {
 		properties.put("limitTime", timeLimit);
 
 		TaskExecutor taskExecutorRun=TaskExecutorUtils.getTaskExecutorInstance(sysType, clazz, key, properties);
-		String keyName=poolInfoVO.getCode();
-		IPoolInfoVO poolInfoVO2=poolInfoMap.get(keyName);
-		taskExecutorRun.execute(new Runnable() {
-			public void run() {
-				try {
-					Thread.sleep(poolInfoVO2.getLimitTime()*1000);
-				} catch (InterruptedException e) {
-					logger.error("----sleep error:"+e.getMessage());
-				}
-				IThreadPoolInfoService poolInfoService=geThreadPoolInfoService();
-				if(poolInfoService!=null){
-					poolInfoService.savePoolInfo(sysType, taskExecutor, poolInfoVO);
-				}
-			}
-		});
+//		String keyName=poolInfoVO.getCode();
+//		IPoolInfoVO poolInfoVO2=poolInfoMap.get(keyName);
+//		taskExecutorRun.execute(new Runnable() {
+//			public void run() {
+//				try {
+//					Thread.sleep(poolInfoVO2.getLimitTime()*1000);
+//				} catch (InterruptedException e) {
+//					logger.error("----sleep error:"+e.getMessage());
+//				}
+//				IThreadPoolInfoService poolInfoService=geThreadPoolInfoService();
+//				if(poolInfoService!=null){
+//					poolInfoService.savePoolInfo(sysType, taskExecutor, poolInfoVO);
+//				}
+//			}
+//		});
 	}
 	
 	private static Date asyncLoadDate=null;
@@ -168,71 +168,71 @@ public class TaskExecutorUtils {
 	 * 以下代码不用加锁，已做了时间控制
 	 * @param sysType
 	 */
-	private static void loadThreadInfoAsync(String sysType){
-		final int timeLimit=5;//5s
-		if(RedisUtil.isRunLimit(TaskExecutorUtils.class, timeLimit, "loadThreadInfoAsync", false)){
-			return ;
-		}
-		Date now = new Date();
-		if(asyncLoadDate==null){
-			asyncLoadDate=now;
-		}
-		TaskExecutor taskExecutorRun=getExecutorSingle(sysType, TaskExecutorUtils.class, "loadThreadInfoAsync", timeLimit);
-		taskExecutorRun.execute(new Runnable() {
-			public void run() {
-				IThreadPoolInfoService poolInfoService=geThreadPoolInfoService();
-				if(poolInfoService==null){
-					return;
-				}
-				
-				List<IPoolInfoVO> list=poolInfoService.findThreadPoolList(sysType, asyncLoadDate);
-				if(CollectionUtils.isEmpty(list)){
-					return;
-				}
-				asyncLoadDate=now;
-				logger.info("-----loadThreadInfoAsync--sysType="+sysType+" asyncLoadDate="+asyncLoadDate+" list="+list.size());
-				for(IPoolInfoVO poolInfoVO:list){
-					TaskExecutor taskObj=taskExecutorMap.get(poolInfoVO.getCode());
-					if(taskObj!=null){
-						if(taskObj instanceof ThreadPoolTaskExecutor){
-							ThreadPoolTaskExecutor taskPool=(ThreadPoolTaskExecutor)taskObj;
-							taskPool.setCorePoolSize(poolInfoVO.getCorePoolSize());
-							taskPool.setMaxPoolSize(poolInfoVO.getMaxPoolSize());
-							taskPool.setKeepAliveSeconds(poolInfoVO.getKeepAliveSeconds());
-							taskPool.setQueueCapacity(poolInfoVO.getQueueCapacity());
-							taskPool.setThreadNamePrefix(poolInfoVO.getName());
-						}
-					}
-				}
-			}
-		});
-	}
+//	private static void loadThreadInfoAsync(String sysType){
+//		final int timeLimit=5;//5s
+//		if(RedisUtil.isRunLimit(TaskExecutorUtils.class, timeLimit, "loadThreadInfoAsync", false)){
+//			return ;
+//		}
+//		Date now = new Date();
+//		if(asyncLoadDate==null){
+//			asyncLoadDate=now;
+//		}
+//		TaskExecutor taskExecutorRun=getExecutorSingle(sysType, TaskExecutorUtils.class, "loadThreadInfoAsync", timeLimit);
+//		taskExecutorRun.execute(new Runnable() {
+//			public void run() {
+//				IThreadPoolInfoService poolInfoService=geThreadPoolInfoService();
+//				if(poolInfoService==null){
+//					return;
+//				}
+//				
+//				List<IPoolInfoVO> list=poolInfoService.findThreadPoolList(sysType, asyncLoadDate);
+//				if(CollectionUtils.isEmpty(list)){
+//					return;
+//				}
+//				asyncLoadDate=now;
+//				logger.info("-----loadThreadInfoAsync--sysType="+sysType+" asyncLoadDate="+asyncLoadDate+" list="+list.size());
+//				for(IPoolInfoVO poolInfoVO:list){
+//					TaskExecutor taskObj=taskExecutorMap.get(poolInfoVO.getCode());
+//					if(taskObj!=null){
+//						if(taskObj instanceof ThreadPoolTaskExecutor){
+//							ThreadPoolTaskExecutor taskPool=(ThreadPoolTaskExecutor)taskObj;
+//							taskPool.setCorePoolSize(poolInfoVO.getCorePoolSize());
+//							taskPool.setMaxPoolSize(poolInfoVO.getMaxPoolSize());
+//							taskPool.setKeepAliveSeconds(poolInfoVO.getKeepAliveSeconds());
+//							taskPool.setQueueCapacity(poolInfoVO.getQueueCapacity());
+//							taskPool.setThreadNamePrefix(poolInfoVO.getName());
+//						}
+//					}
+//				}
+//			}
+//		});
+//	}
 	
 	public static void loadThreadInfoAll(){
 		logger.info("-----loadThreadInfoAll--");
-		IThreadPoolInfoService poolInfoService=geThreadPoolInfoService();
-		if(poolInfoService==null){
-			logger.warn("-----loadThreadInfoAll--poolInfoService is null");
-			return;
-		}
-		
-		List<IPoolInfoVO> list=poolInfoService.findThreadPoolList(null, null);
-		if(CollectionUtils.isEmpty(list)){
-			return;
-		}
-		logger.info("-----loadThreadInfoAll--list="+list.size());
-		for(IPoolInfoVO pInfo:list){
-			poolInfoMap.put(pInfo.getCode(), pInfo);
-		}
+//		IThreadPoolInfoService poolInfoService=geThreadPoolInfoService();
+//		if(poolInfoService==null){
+//			logger.warn("-----loadThreadInfoAll--poolInfoService is null");
+//			return;
+//		}
+//		
+//		List<IPoolInfoVO> list=poolInfoService.findThreadPoolList(null, null);
+//		if(CollectionUtils.isEmpty(list)){
+//			return;
+//		}
+//		logger.info("-----loadThreadInfoAll--list="+list.size());
+//		for(IPoolInfoVO pInfo:list){
+//			poolInfoMap.put(pInfo.getCode(), pInfo);
+//		}
 	}
 	
-	private static IThreadPoolInfoService threadPoolInfoService=null;
-	private static IThreadPoolInfoService geThreadPoolInfoService() {
-		if(threadPoolInfoService==null && SpringContextUtil.containsBean(threadInfoServiceName)){
-			threadPoolInfoService=(IThreadPoolInfoService)SpringContextUtil.getBean(threadInfoServiceName);
-		}
-		return threadPoolInfoService;
-	}
+//	private static IThreadPoolInfoService threadPoolInfoService=null;
+//	private static IThreadPoolInfoService geThreadPoolInfoService() {
+//		if(threadPoolInfoService==null && SpringContextUtil.containsBean(threadInfoServiceName)){
+//			threadPoolInfoService=(IThreadPoolInfoService)SpringContextUtil.getBean(threadInfoServiceName);
+//		}
+//		return threadPoolInfoService;
+//	}
 	
 	public static Properties getPoolInfo(int corePoolSize, int  maxPoolSize, int queueCapacity){
 		Properties properties=new Properties();
@@ -266,12 +266,12 @@ public class TaskExecutorUtils {
 	    	return poolInfoMap;
 	    }
 
-	/**
-	 * @param threadInfoServiceName the threadInfoServiceName to set
-	 */
-	public void setThreadInfoServiceName(String threadInfoServiceName) {
-		TaskExecutorUtils.threadInfoServiceName = threadInfoServiceName;
-	}
+//	/**
+//	 * @param threadInfoServiceName the threadInfoServiceName to set
+//	 */
+//	public void setThreadInfoServiceName(String threadInfoServiceName) {
+//		TaskExecutorUtils.threadInfoServiceName = threadInfoServiceName;
+//	}
 	
 
 }

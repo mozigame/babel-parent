@@ -318,58 +318,58 @@ public class RedisUtil {
 	}
 	
 
-	private static RedisLockUtil redisLockUtil;
-	private static void initRedisLock(){
-		if(redisLockUtil==null){
-			if(RedisManager.getJedisPool()==null){
-				logger.info("----initRedisLock--init jedisPool");
-				RedisManager redisManager=null;
-				if(SpringContextUtil.containsBean("redisManager")){
-					redisManager=(RedisManager)SpringContextUtil.getBean("redisManager");
-				}
-				else{
-					redisManager=new RedisManager();
-				}
-				if(StringUtils.isEmpty(redisManager.getHost())){
-					redisManager.setHost(ConfigUtils.getConfigValue("redis.host"));
-					redisManager.setPort(ConfigUtils.getConfigValueInt("redis.port"));
-					redisManager.setDatabase(ConfigUtils.getConfigValueInt("redis.database"));
-					redisManager.setMaxWait(ConfigUtils.getConfigValueInt("redis.maxWait"));
-				}
-				redisManager.init();
-			}
-			if(RedisManager.getJedisPool()!=null){
-				redisLockUtil=new RedisLockUtil(RedisManager.getJedisPool());
-			}
-			if(redisLockUtil==null && SpringContextUtil.containsBean("jedisPool")){
-				JedisPool jedisPool=(JedisPool)SpringContextUtil.getBean("jedisPool");
-				redisLockUtil=new RedisLockUtil(jedisPool);
-			}
-			else{
-				if(getRedisTemplate()!=null){
-					redisLockUtil=new RedisLockUtil(redisTemplate);
-				}
-				else{
-					logger.warn("----initRedisLock--beanName:jedisPool not found");
-				}
-			}
-		}
-	}
-	public static boolean tryLock(String redisKey){
-		initRedisLock();
-		if(redisLockUtil==null){
-			return false;
-		}
-		return redisLockUtil.tryLock("_lock."+redisKey);
-	}
-	
-	public static void unLock(String redisKey){
-		initRedisLock();
-		if(redisLockUtil==null){
-			return;
-		}
-		redisLockUtil.unLock("_lock."+redisKey);
-	}
+//	private static RedisLockUtil redisLockUtil;
+//	private static void initRedisLock(){
+//		if(redisLockUtil==null){
+//			if(RedisManager.getJedisPool()==null){
+//				logger.info("----initRedisLock--init jedisPool");
+//				RedisManager redisManager=null;
+//				if(SpringContextUtil.containsBean("redisManager")){
+//					redisManager=(RedisManager)SpringContextUtil.getBean("redisManager");
+//				}
+//				else{
+//					redisManager=new RedisManager();
+//				}
+//				if(StringUtils.isEmpty(redisManager.getHost())){
+//					redisManager.setHost(ConfigUtils.getConfigValue("redis.host"));
+//					redisManager.setPort(ConfigUtils.getConfigValueInt("redis.port"));
+//					redisManager.setDatabase(ConfigUtils.getConfigValueInt("redis.database"));
+//					redisManager.setMaxWait(ConfigUtils.getConfigValueInt("redis.maxWait"));
+//				}
+//				redisManager.init();
+//			}
+//			if(RedisManager.getJedisPool()!=null){
+//				redisLockUtil=new RedisLockUtil(RedisManager.getJedisPool());
+//			}
+//			if(redisLockUtil==null && SpringContextUtil.containsBean("jedisPool")){
+//				JedisPool jedisPool=(JedisPool)SpringContextUtil.getBean("jedisPool");
+//				redisLockUtil=new RedisLockUtil(jedisPool);
+//			}
+//			else{
+//				if(getRedisTemplate()!=null){
+//					redisLockUtil=new RedisLockUtil(redisTemplate);
+//				}
+//				else{
+//					logger.warn("----initRedisLock--beanName:jedisPool not found");
+//				}
+//			}
+//		}
+//	}
+//	public static boolean tryLock(String redisKey){
+//		initRedisLock();
+//		if(redisLockUtil==null){
+//			return false;
+//		}
+//		return redisLockUtil.tryLock("_lock."+redisKey);
+//	}
+//	
+//	public static void unLock(String redisKey){
+//		initRedisLock();
+//		if(redisLockUtil==null){
+//			return;
+//		}
+//		redisLockUtil.unLock("_lock."+redisKey);
+//	}
 	
 	private static Map<String, Long> clearCacheTimeMap = new ConcurrentHashMap<>();
 	private static Map<String, Integer> cacheCounterMap = new ConcurrentHashMap<>();
