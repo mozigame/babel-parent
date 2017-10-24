@@ -57,22 +57,22 @@ public class AresLogAspect {
     public void doAfterReq(Object ret) {
         try {
             // 记录下请求内容
-            StringBuffer buf = new StringBuffer()
-                    .append(DateUtils.format(record.getDate(), "yyyy-MM-dd HH:mm:ss,S"))
-                    .append(SPLIT)
-                    .append(record.getRequestId())
-                    .append(SPLIT)
-                    .append(record.getReqUri())
-                    .append(SPLIT)
-                    .append(record.getMethod())
-                    .append(SPLIT)
-                    .append(System.currentTimeMillis() - spendTime)
-                    .append(SPLIT)
-                    .append(response.getStatus())
-                    .append(SPLIT)
-                    .append(buildParameterString(record.getParameters()))
-                    .append(SPLIT)
-                    .append(record.getIp())
+            StringBuffer buf = new StringBuffer();
+            buf.append(DateUtils.format(record.getDate(), "yyyy-MM-dd HH:mm:ss,S"))
+                    .append(SPLIT);
+            buf.append(record.getRequestId())
+                    .append(SPLIT);
+            buf.append(record.getReqUri())
+                    .append(SPLIT);
+            buf.append(record.getMethod())
+                    .append(SPLIT);
+            buf.append(System.currentTimeMillis() - spendTime)
+                    .append(SPLIT);
+            buf.append(response.getStatus())
+                    .append(SPLIT);
+            buf.append(buildParameterString(record.getParameters()))
+                    .append(SPLIT);
+            buf.append(record.getIp())
                     .append(SPLIT)
                     .append(JSON.toJSONString(ret));
             // 处理完请求，返回内容
