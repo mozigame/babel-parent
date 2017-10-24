@@ -83,6 +83,7 @@ public class RedisUtil {
 				if (redisErrorDate == null || new Date().getTime() - redisErrorDate.getTime() > 10000) {// 如果redis发生错误，10秒内不处理
 					user = redisTemplate.opsForHash().get(redisKey, key);
 				}
+//				System.out.println("----key="+key+" user2="+user);
 			} catch (Exception e) {
 				redisErrorDate = new Date();
 				logger.warn("-----getRedis--redisKey=" + redisKey + " key=" + key + " error:" + e.getMessage(), e);
@@ -345,7 +346,12 @@ public class RedisUtil {
 				redisLockUtil=new RedisLockUtil(jedisPool);
 			}
 			else{
-				logger.warn("----initRedisLock--beanName:jedisPool not found");
+				if(getRedisTemplate()!=null){
+					redisLockUtil=new RedisLockUtil(redisTemplate);
+				}
+				else{
+					logger.warn("----initRedisLock--beanName:jedisPool not found");
+				}
 			}
 		}
 	}

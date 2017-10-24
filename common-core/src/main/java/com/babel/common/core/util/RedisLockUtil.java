@@ -7,6 +7,10 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.RedisTemplate;
+
+import com.sun.tools.jdeps.resources.jdeps;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -20,7 +24,8 @@ public class RedisLockUtil {
     
     private static final int DEFAULT_BATCH_EXPIRE_TIME = 20;
 
-    private final JedisPool jedisPool;
+    private JedisPool jedisPool;
+    private RedisTemplate redisTemplate;
     
     /**
      * 构造
@@ -29,7 +34,9 @@ public class RedisLockUtil {
     public RedisLockUtil(JedisPool jedisPool) {
         this.jedisPool = jedisPool;
     }
-
+    public RedisLockUtil(RedisTemplate redisTemplate) {
+        this.redisTemplate = redisTemplate;
+    }
     /**
      * 获取锁  如果锁可用   立即返回true，  否则返回false
      * @author http://blog.csdn.net/java2000_wl
@@ -53,21 +60,21 @@ public class RedisLockUtil {
      */
     public boolean tryLock(String key, long timeout, TimeUnit unit) {
 //        String key = (String) redisKey.uniqueIdentify();
-        Jedis jedis = null;
+    	RedisConnection jedis = null;
         try {
             jedis = getResource();
             long nano = System.nanoTime();
             do {
                 
-                Long i = jedis.setnx(key, key);
-//                LOGGER.info("try lock key: " + key+" i="+i);
-                if (i == 1) { 
-                    jedis.expire(key, DEFAULT_SINGLE_EXPIRE_TIME);
+                Boolean i = jedis.setNX(key.getBytes(), key.getBytes());
+                if (i) { 
+                    jedis.expire(key.getBytes(), DEFAULT_SINGLE_EXPIRE_TIME+0l);
                     LOGGER.debug("get lock, key: " + key + " , expire in " + DEFAULT_SINGLE_EXPIRE_TIME + " seconds.");
                     return Boolean.TRUE;
                 } else { // 存在锁
                     if (LOGGER.isDebugEnabled()) {
-                        String desc = jedis.get(key);
+                    	byte[] value = jedis.get(key.getBytes());
+                        String desc=new String(value);
                         LOGGER.debug("key: " + key + " locked by another business：" + desc);
                     }
                 }
@@ -79,11 +86,11 @@ public class RedisLockUtil {
             return Boolean.FALSE;
         } catch (JedisConnectionException je) {
             LOGGER.error(je.getMessage(), je);
-            returnBrokenResource(jedis);
+//            returnBrokenResource(jedis);
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
         } finally {
-            returnResource(jedis);
+//            returnResource(jedis);
         }
         return Boolean.FALSE;
     }
@@ -96,19 +103,20 @@ public class RedisLockUtil {
      */
     public void lock(String key) {
 //        String key = (String) redisKey.uniqueIdentify();
-        Jedis jedis = null;
+    	RedisConnection jedis = null;
         try {
             jedis = getResource();
             do {
                 LOGGER.debug("lock key: " + key);
-                Long i = jedis.setnx(key, key);
-                if (i == 1) { 
-                    jedis.expire(key, DEFAULT_SINGLE_EXPIRE_TIME);
+                Boolean i = jedis.setNX(key.getBytes(), key.getBytes());
+                if (i) { 
+                    jedis.expire(key.getBytes(), DEFAULT_SINGLE_EXPIRE_TIME+0l);
                     LOGGER.debug("get lock, key: " + key + " , expire in " + DEFAULT_SINGLE_EXPIRE_TIME + " seconds.");
                     return;
                 } else {
                     if (LOGGER.isDebugEnabled()) {
-                        String desc = jedis.get(key);
+                        byte[] value = jedis.get(key.getBytes());
+                        String desc=new String(value);
                         LOGGER.debug("key: " + key + " locked by another business：" + desc);
                     }
                 }
@@ -116,11 +124,11 @@ public class RedisLockUtil {
             } while (true);
         } catch (JedisConnectionException je) {
             LOGGER.error(je.getMessage(), je);
-            returnBrokenResource(jedis);
+//            returnBrokenResource(jedis);
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
         } finally {
-            returnResource(jedis);
+//            returnResource(jedis);
         }
     }
 
@@ -161,7 +169,7 @@ public class RedisLockUtil {
         try {
             List<String> needLocking = new CopyOnWriteArrayList<String>();    
             List<String> locked = new CopyOnWriteArrayList<String>();    
-            jedis = getResource();
+//            jedis = getResource();
             long nano = System.nanoTime();
             do {
                 // 构建pipeline，批量提交
@@ -223,18 +231,21 @@ public class RedisLockUtil {
         for (String key : redisKeyList) {
             keys.add(key);
         }
-        Jedis jedis = null;
+        RedisConnection jedis = null;
         try {
             jedis = getResource();
-            jedis.del(keys.toArray(new String[0]));
+            for (String key : redisKeyList) {
+            	jedis.del(key.getBytes());
+            }
+//            jedis.del(keys.toArray(new String[0]));
 //            LOGGER.info("release lock, keys :" + keys);
         } catch (JedisConnectionException je) {
             LOGGER.error(je.getMessage(), je);
-            returnBrokenResource(jedis);
+//            returnBrokenResource(jedis);
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
         } finally {
-            returnResource(jedis);
+//            returnResource(jedis);
         }
     }
     
@@ -243,8 +254,9 @@ public class RedisLockUtil {
      * @date 2013-7-22 下午9:33:45
      * @return
      */
-    private Jedis getResource() {
-        return jedisPool.getResource();
+    private RedisConnection getResource() {
+    	return redisTemplate.getConnectionFactory().getConnection();
+//        return jedisPool.getResource();
     }
     
     /**

@@ -53,7 +53,6 @@ public class RedisManager {
         	if(redisTemplate==null){
         		logger.warn("redisTemplate not found");
         	}
-        	logger.info("-------redisManager clusterInfo----"+redisTemplate.getConnectionFactory().getClusterConnection().clusterGetClusterInfo());
 //        	redisTemplate.getConnectionFactory().getClusterConnection().
             //jedisPool = JedisUtil.getJedisPool();
 //            jedisPool = new JedisPool(new JedisPoolConfig(), host, port, maxWait);
