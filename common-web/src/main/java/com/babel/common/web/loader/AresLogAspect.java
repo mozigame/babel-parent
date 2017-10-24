@@ -84,7 +84,7 @@ public class AresLogAspect {
     }
 
     private void clearParam() {
-        record = null;
+        record = new RequestLogRecord();
         spendTime = 0;
     }
 
