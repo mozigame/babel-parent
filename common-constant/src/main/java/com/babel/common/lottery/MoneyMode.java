@@ -9,9 +9,9 @@ import java.util.Map;
  *
  */
 public enum MoneyMode {
-    YUAN('y', "元"),
-    JIAO('j', "角"),
-    FEN('f', "分");
+    YUAN('y', "元", 100),
+    JIAO('j', "角", 10),
+    FEN('f', "分", 1);
 
 
     private static Map<String, MoneyMode> map = new HashMap<>();
@@ -24,10 +24,12 @@ public enum MoneyMode {
 
     private Character code;
     private String mes;
+    private int moneyValue;
 
-    MoneyMode(char code, String mes) {
+    MoneyMode(char code, String mes, int moneyValue) {
         this.code = code;
         this.mes = mes;
+        this.moneyValue=moneyValue;
     }
 
     public Character code() {
