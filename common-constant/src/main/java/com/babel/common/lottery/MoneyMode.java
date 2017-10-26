@@ -14,11 +14,11 @@ public enum MoneyMode {
     FEN('f', "分");
 
 
-    private static Map<Character, MoneyMode> map = new HashMap<>();
+    private static Map<String, MoneyMode> map = new HashMap<>();
 
     static {
         for (MoneyMode oj : MoneyMode.values()) {
-            map.put(oj.code, oj);
+            map.put(""+oj.code, oj);
         }
     }
 
@@ -38,8 +38,27 @@ public enum MoneyMode {
         return mes;
     }
 
-    public static MoneyMode parse(int code) {
+    public static MoneyMode parse(String code) {
         return map.get(code);
     }
+    
+	/**
+	 * 元角分转换
+	 * @param moneyMode
+	 * @return
+	 */
+	public static int getMoneyValue(String moneyMode){
+		int v=0;
+		if((""+MoneyMode.YUAN.code()).equals(moneyMode)){
+			v=100;
+		}
+		else if((""+MoneyMode.JIAO.code()).equals(moneyMode)){
+			v=10;
+		}
+		else if((""+MoneyMode.FEN.code()).equals(moneyMode)){
+			v=1;
+		}
+		return v;
+	}
 
 }
