@@ -22,7 +22,8 @@ public class RedisConstant {
 		,PLAYS_DESCS("playsDescs")	//玩法描述
 		,PLAYS_MANAGE("playsManage")//玩法开关
 		,PLAYS_LIMIT("playsLimit")	//玩法限制
-		,QUOTA_LIMIT("quotaLimit");	//投注限制
+		,QUOTA_LIMIT("quotaLimit")	//投注限制
+		,SHORT_LINK("shortLink");	//短链接
 		private String code;
 		private dataMaxModifyDate(String code){
 			this.code=code;
