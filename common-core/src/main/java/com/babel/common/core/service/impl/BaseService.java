@@ -97,6 +97,8 @@ public abstract class BaseService<T> implements IBaseService<T> {
     	PageHelper.startPage(page.getCurrentPage(), page.getPageSize());
 		List<T> list = selectByExample(example);
 		PageInfo<T> pageInfo = new PageInfo<T>(list);
+		pageInfo.setPageSize(page.getPageSize());
+		pageInfo.setPageNum(page.getCurrentPage());
 		PageVO<T> pageRet = new PageVO<T>(pageInfo);
 		return pageRet;
     }
