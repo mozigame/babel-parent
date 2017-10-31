@@ -213,6 +213,11 @@ public class PageVO<T> implements IPageVO<T>, java.io.Serializable{
 		return this.datas;
 	}
 
+	@Deprecated
+	public void setRows(Collection<T> rows) {
+		this.datas = rows;
+	}
+
 //	public boolean add(T o) {
 //		return this.datas.add(o);
 //	}
