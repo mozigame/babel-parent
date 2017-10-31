@@ -162,6 +162,7 @@ public class PageVO<T> implements IPageVO<T>, java.io.Serializable{
 		this.datas=pageInfo.getList();
 		Long total=pageInfo.getTotal();
 		this.totalSize=total.intValue();
+		this.pageSize=pageInfo.getPageSize();
 		this.currentPage=pageInfo.getPageNum();
 	}
 
