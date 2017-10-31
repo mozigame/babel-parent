@@ -31,7 +31,7 @@ public class PageVO<T> implements IPageVO<T>, java.io.Serializable{
 	private int pageSize;
 	private int totalPage;
 	private int currentPage;
-	private Collection<T> datas;
+	private Collection<T> rows;
 	private String sort;//column
 	private String order;//asc/desc
 	public static List<String>commParamList=CommUtil.newList("sort","order","page","rows","startDate","endDate");
@@ -129,8 +129,8 @@ public class PageVO<T> implements IPageVO<T>, java.io.Serializable{
     }
 	
 	private void pageSizeCheck(){
-		if(this.datas==null)
-			this.datas=new ArrayList<>();
+		if(this.rows==null)
+			this.rows=new ArrayList<>();
 		if(pageSize>MAX_PAGE_SIZE){
 			logger.warn("----Reset pageSize by out of limit:"+MAX_PAGE_SIZE);
 			pageSize=MAX_PAGE_SIZE;
@@ -138,7 +138,7 @@ public class PageVO<T> implements IPageVO<T>, java.io.Serializable{
 	}
 
 	public PageVO(Collection<T> datas, int totalSize, int pageSize, int currentPage) {
-		this.datas=datas;
+		this.rows=datas;
 		this.totalSize = totalSize;
 		this.pageSize = pageSize;
 		this.currentPage = currentPage;
@@ -147,7 +147,7 @@ public class PageVO<T> implements IPageVO<T>, java.io.Serializable{
 	}
 	
 	public PageVO(Collection<T> datas, PageVO pageVO) {
-		this.datas=datas;
+		this.rows=datas;
 		this.totalSize = pageVO.getTotal();
 		this.pageSize = pageVO.getPageSize();
 		this.currentPage = pageVO.getCurrentPage();
@@ -159,7 +159,7 @@ public class PageVO<T> implements IPageVO<T>, java.io.Serializable{
 		if(pageInfo==null){
 			return;
 		}
-		this.datas=pageInfo.getList();
+		this.rows=pageInfo.getList();
 		Long total=pageInfo.getTotal();
 		this.totalSize=total.intValue();
 		this.pageSize=pageInfo.getPageSize();
@@ -212,12 +212,12 @@ public class PageVO<T> implements IPageVO<T>, java.io.Serializable{
 	}
 
 	public Collection<T> getRows() {
-		return this.datas;
+		return this.rows;
 	}
 
 	@Deprecated
 	public void setRows(Collection<T> rows) {
-		this.datas = rows;
+		this.rows = rows;
 	}
 
 //	public boolean add(T o) {
@@ -225,49 +225,49 @@ public class PageVO<T> implements IPageVO<T>, java.io.Serializable{
 //	}
 //
 	public boolean addAll(Collection<? extends T> c) {
-		return this.datas.addAll(c);
+		return this.rows.addAll(c);
 	}
 
 	public void clear() {
-		this.datas.clear();
+		this.rows.clear();
 	}
 
 	public boolean contains(Object o) {
-		return this.datas.contains(o);
+		return this.rows.contains(o);
 	}
 
 	public boolean containsAll(Collection<?> c) {
-		return this.datas.containsAll(c);
+		return this.rows.containsAll(c);
 	}
 
 
 
 	public Iterator<T> iterator() {
-		return this.datas.iterator();
+		return this.rows.iterator();
 	}
 
 	public boolean remove(Object o) {
-		return this.datas.remove(o);
+		return this.rows.remove(o);
 	}
 
 	public boolean removeAll(Collection<?> c) {
-		return this.datas.removeAll(c);
+		return this.rows.removeAll(c);
 	}
 
 	public boolean retainAll(Collection<?> c) {
-		return this.datas.retainAll(c);
+		return this.rows.retainAll(c);
 	}
 
 	public int size() {
-		return this.datas.size();
+		return this.rows.size();
 	}
 
 	public Object[] toArray() {
-		return this.datas.toArray();
+		return this.rows.toArray();
 	}
 
 	public <T> T[] toArray(T[] a) {
-		return this.datas.toArray(a);
+		return this.rows.toArray(a);
 	}
 
 //	public Collection<T> getRows(){
