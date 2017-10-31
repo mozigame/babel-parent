@@ -289,4 +289,16 @@ public class PageVO<T> implements IPageVO<T>, java.io.Serializable{
 		this.order = order;
 	}
 
+	public void setTotalSize(int totalSize) {
+		this.totalSize = totalSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
+
 }
