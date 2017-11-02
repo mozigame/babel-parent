@@ -6,6 +6,8 @@ public abstract interface IPageVO<T>
 {
   public abstract int getTotal();
 
+  abstract void setTotal(int total);
+
   public abstract int getPageSize();
 
   public abstract int getTotalPage();

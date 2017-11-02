@@ -171,6 +171,11 @@ public class PageVO<T> implements IPageVO<T>, java.io.Serializable{
 		return this.totalSize;
 	}
 
+	@Override
+	public void setTotal(int total) {
+		this.totalSize = total;
+	}
+
 	public int getPageSize() {
 		return this.pageSize;
 	}
@@ -298,6 +303,10 @@ public class PageVO<T> implements IPageVO<T>, java.io.Serializable{
 
 	public void setTotalSize(int totalSize) {
 		this.totalSize = totalSize;
+	}
+
+	public int getTotalSize() {
+		return this.totalSize;
 	}
 
 	public void setPageSize(int pageSize) {
