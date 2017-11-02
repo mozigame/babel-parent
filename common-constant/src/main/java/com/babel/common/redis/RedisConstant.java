@@ -256,6 +256,18 @@ public class RedisConstant {
 	public final static String getKeyUserOrderStatusSet(Long memberId, Long lotteryId, Long pdate){
 		return BET_USER_ORDER_STATUS_SET+"_"+memberId+"_"+lotteryId+"_"+pdate;
 	}
+	
+	/**
+	 * 用户注单状态数据-跨彩种
+	 * @param memberId
+	 * @param lotteryId
+	 * @param pdate
+	 * @param orderStatus
+	 * @return
+	 */
+	public final static String getKeyUserOrderStatusSetCross(Integer sideType, Long memberId, Long pdate){
+		return BET_USER_ORDER_STATUS_SET+"_cross_"+sideType+"_"+memberId+"_"+"_"+pdate;
+	}
 
 
 	
