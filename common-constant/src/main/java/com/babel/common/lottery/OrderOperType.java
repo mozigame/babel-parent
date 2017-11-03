@@ -15,7 +15,8 @@ public enum OrderOperType {
     lot_order(1, "下注"),
     user_withdrawals(2, "用户撤单"),
     system_withdrawals(3, "系统撤单"),
-    system_payoff(4, "系统派彩"),
+    system_payoff(41, "系统派彩"),
+    manual_payoff(42, "人工派彩"),
     other(5, "其他");
 
     private static Map<Integer, OrderOperType> map = new HashMap<>();
