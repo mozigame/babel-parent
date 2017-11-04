@@ -12,6 +12,7 @@ public class RedisConstant {
 	public final static String KEY_DATA_MAX_MODIFY_TIME="_dataMaxModifyTime";
 	public static enum dataMaxModifyDate{
 		PLAT_INFO("platInfo")
+		,BANK("bank")	//银行列表
 		,PLAT_ODDS_INFO("platOddsInfo")//平台商彩种赔率
 		,LOTTERY_STATUS("lotteryStatus")//玩法状态或玩法信息
 //		,LOTTERY("lotteryInfo")
@@ -52,6 +53,7 @@ public class RedisConstant {
 	 * 执行周期3分钟一次
 	 */
 	public final static String KEY_DATA_PLAT_INFO="_dataPlatInfo";
+	public final static String KEY_DATA_BANK="_dataBank";
 	/**
 	 * 数据-平台商彩种及赔率
 	 */
