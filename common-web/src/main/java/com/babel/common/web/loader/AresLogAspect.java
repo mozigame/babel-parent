@@ -87,7 +87,38 @@ public class AresLogAspect {
         record = new RequestLogRecord();
         spendTime = 0;
     }
+    public void errLog(HttpServletRequest request, int httpStatus, String response) {
 
+        record = new RequestLogRecord();
+        record.setRequestId(reqId.nextId());
+        record.setReqUri(request.getRequestURI());
+        record.setMethod(request.getMethod());
+        record.setIp(IPUtil.getRealIpAddr(request));
+        record.setParameters(request.getParameterMap());
+
+        // 记录下请求内容
+        StringBuilder buf = new StringBuilder();
+        buf.append(DateUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss,S"))
+                .append(SPLIT);
+        buf.append(record.getRequestId())
+                .append(SPLIT);
+        buf.append(record.getReqUri())
+                .append(SPLIT);
+        buf.append(record.getMethod())
+                .append(SPLIT);
+        buf.append(0)
+                .append(SPLIT);
+        buf.append(httpStatus)
+                .append(SPLIT);
+        buf.append(buildParameterString(record.getParameters()))
+                .append(SPLIT);
+        buf.append(record.getIp())
+                .append(SPLIT)
+                .append(response);
+        // 处理完请求，返回内容
+        logger.error(buf.toString());
+        clearParam();
+    }
 
 //    @Around("execution(public * com.youyun.customer.controller.*.*(..))")
 //    public void check(ProceedingJoinPoint point) throws Throwable {
