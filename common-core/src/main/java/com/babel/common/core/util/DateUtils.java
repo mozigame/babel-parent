@@ -104,7 +104,7 @@ import org.apache.commons.logging.LogFactory;
 
                        @Override
                        protected SimpleDateFormat initialValue() {
-                           log.info("thread: " + Thread.currentThread() + " init pattern: " + pattern_str);
+                           log.debug("thread: " + Thread.currentThread() + " init pattern: " + pattern_str);
                            return new SimpleDateFormat(pattern_str);
                        }
                    };
