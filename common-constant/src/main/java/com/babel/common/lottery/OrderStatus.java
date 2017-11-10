@@ -17,8 +17,8 @@ public enum OrderStatus {
     withdrawals(4, "用户撤单"),
     system_withdrawals(5, "系统撤单"),
     prize_win_stop_chase(6, "中奖停追"),
-    exception(71, "存在异常"),
-    exception_deal(81, "异常处理中");
+    exception(71, "存在异常"),//双面彩叫异常注单，见UserOrderZsetOrderBizImpl
+    exception_deal(81, "异常处理中");//双面彩叫异常注单，见UserOrderZsetOrderBizImpl
 
 
     private static Map<Integer, OrderStatus> map = new HashMap<>();
