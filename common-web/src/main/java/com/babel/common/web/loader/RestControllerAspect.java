@@ -40,7 +40,7 @@ public class RestControllerAspect {
 	private static List<String> ignoreClassList=new ArrayList(); 
 	private static Map<String, Object> retDataMap=new HashMap<>();
 	static{
-		retDataMap.put("err", "SUSCCESS");
+		retDataMap.put("err", "SUCCESS");
 		retDataMap.put("msg", "");
 		ignoreClassList=CommUtil.newList("LogsResource","ProfileInfoResource");
 	}
