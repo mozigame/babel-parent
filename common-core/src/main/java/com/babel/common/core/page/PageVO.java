@@ -32,7 +32,7 @@ public class PageVO<T> implements IPageVO<T>, java.io.Serializable{
 	private int totalPage;
 	private int currentPage;
 	private Collection<T> rows;
-	private Collection<T> summary;
+	private Collection<? extends T> summary;
 	private String sort;//column
 	private String order;//asc/desc
 	public static List<String>commParamList=CommUtil.newList("sort","order","page","rows","startDate","endDate");
@@ -226,10 +226,10 @@ public class PageVO<T> implements IPageVO<T>, java.io.Serializable{
 		this.rows = rows;
 	}
 
-	public Collection<T> getSummary() {
+	public Collection<? extends T> getSummary() {
 		return this.summary;
 	}
-	public void setSummary(Collection<T> summary) {this.summary = summary; }
+	public void setSummary(Collection<? extends T> summary) {this.summary = summary; }
 
 //	public boolean add(T o) {
 //		return this.datas.add(o);
