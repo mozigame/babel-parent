@@ -6,6 +6,10 @@ package com.babel.common.redis;
  *
  */
 public class RedisConstant {
+	public final static String REDIS_SERIALIZER_STRING="StringRedisSerializer";
+	public final static String REDIS_SERIALIZER_JDK="JdkSerializationRedisSerializer";
+	public final static String REDIS_SERIALIZER_JACKSON2JSON="Jackson2JsonRedisSerializer";
+	
 	/**
 	 * 最大修改时间
 	 */

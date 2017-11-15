@@ -84,7 +84,7 @@ public class RestControllerAspect {
 			ResponseEntity entity=(ResponseEntity)response;
 			Object body=entity.getBody();
 //			System.out.println("---body="+body.getClass());
-			if(body instanceof RetData){
+			if(body instanceof RetData||"ParameterizedErrorVM".equals(body.getClass().getSimpleName())){
 				return response;
 			}
 			else{
