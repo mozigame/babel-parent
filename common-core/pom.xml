@@ -18,6 +18,12 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.babel.common</groupId>
+			<artifactId>common-constant</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
 		<!--通用Mapper -->
 		<dependency>
 			<groupId>tk.mybatis</groupId>
