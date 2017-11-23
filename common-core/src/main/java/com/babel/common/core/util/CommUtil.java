@@ -483,6 +483,13 @@ public class CommUtil {
 		}
 		return timeStr;
 	}
+	
+	public static int getLength(Long v){
+		if(v==null){
+			return 0;
+		}
+		return v.toString().length();
+	}
     
     public static String getNumStr(String num,int length){
     	if(num==null){
