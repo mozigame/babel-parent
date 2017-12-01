@@ -143,19 +143,19 @@ import org.apache.commons.logging.LogFactory;
 	   return Long.parseLong(DateUtils.format(date, "yyyyMMdd"));
    }
 
-	public static Long addPDays(Long pdate, Integer day) {
+	public static Integer addPDays(Integer pdate, Integer day) {
 		try {
 			if(day==0){
 				return pdate;
 			}
 			Date date = parse("" + pdate, "yyyyMMdd");
 			date=org.apache.commons.lang.time.DateUtils.addDays(date, day);
-			return getPdate(date);
+			return getPdate(date).intValue();
 		} catch (ParseException e) {
 //			e.printStackTrace();
 			log.error("----pdateAdd--pdate="+pdate+" day="+day, e);
 		}
-		return 0l;
+		return 0;
 
 	}
  }
