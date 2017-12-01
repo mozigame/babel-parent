@@ -142,6 +142,22 @@ import org.apache.commons.logging.LogFactory;
    public static Long getPdate(Date date){
 	   return Long.parseLong(DateUtils.format(date, "yyyyMMdd"));
    }
+
+	public static Long addPDays(Long pdate, Integer day) {
+		try {
+			if(day==0){
+				return pdate;
+			}
+			Date date = parse("" + pdate, "yyyyMMdd");
+			date=org.apache.commons.lang.time.DateUtils.addDays(date, day);
+			return getPdate(date);
+		} catch (ParseException e) {
+//			e.printStackTrace();
+			log.error("----pdateAdd--pdate="+pdate+" day="+day, e);
+		}
+		return 0l;
+
+	}
  }
 
 
