@@ -27,6 +27,7 @@ public class HttpClientUtil {
     private static final Logger log = Logger.getLogger(HttpClientUtil.class);
 
     public static ResponseData buildPost(String url, Map<String, Object> requestParamsMap, Map<String, Object> headers) {
+    	log.debug("request post, url: " + url + " ,param:" + requestParamsMap);
         ResponseData responseData = new ResponseData();
         PrintWriter printWriter = null;
         BufferedReader bufferedReader = null;
