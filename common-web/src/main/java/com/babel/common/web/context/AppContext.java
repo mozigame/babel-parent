@@ -130,6 +130,10 @@ public class AppContext {
 		if("127.0.0.1".equals(ip) ||"0:0:0:0:0:0:0:1".equals(ip)){
 			ip="localhost";
 		}
+		String[] ipStrings=ip.split(",");
+		if(ipStrings.length>1){
+			ip=ipStrings[0];
+		}
 		return ip;
 	}
 	
