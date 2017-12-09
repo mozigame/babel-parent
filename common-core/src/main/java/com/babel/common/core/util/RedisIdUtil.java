@@ -46,10 +46,19 @@ public class RedisIdUtil {
 	 * @return
 	 */
 	public static Long getRedisNextCid(String cidKey){
+		return getRedisNextCid(cidKey, 1);
+	}
+	
+	/**
+	 * redis的cid生成器
+	 * @param cidKey
+	 * @return
+	 */
+	public static Long getRedisNextCid(String cidKey, int increment){
 		Long cid=null;
 		RedisTemplate redisTemplate=RedisUtil.getRedisTemplate();
 		if(redisTemplate!=null){
-			cid=redisTemplate.opsForHash().increment(REDIS_KEY_SEQUENCE_CID, cidKey, 1);
+			cid=redisTemplate.opsForHash().increment(REDIS_KEY_SEQUENCE_CID, cidKey, increment);
 		}
 		return cid;
 	}
