@@ -27,6 +27,8 @@ public class MemberVO implements Serializable{
     private Integer acType;
 
     private String curType;
+    
+    private Integer levelId;
 
     private Integer status;
 
@@ -92,6 +94,20 @@ public class MemberVO implements Serializable{
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+
+	/**
+	 * @return the levelId
+	 */
+	public Integer getLevelId() {
+		return levelId;
+	}
+
+	/**
+	 * @param levelId the levelId to set
+	 */
+	public void setLevelId(Integer levelId) {
+		this.levelId = levelId;
 	}
     
     
