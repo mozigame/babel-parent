@@ -13,7 +13,9 @@ import java.util.Map;
 public enum SourceType {
 
     PC(1, "PC"),
-    H5(2, "H5");
+    H5(2, "H5"),
+    IOS(3, "IOS"),
+    ANDROID(4, "Android");
     
 
     private static Map<Integer, SourceType> map = new HashMap<>();
