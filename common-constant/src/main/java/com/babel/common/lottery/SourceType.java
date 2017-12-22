@@ -14,8 +14,8 @@ public enum SourceType {
 
     PC(1, "PC"),
     H5(2, "H5"),
-    IOS(3, "IOS"),
-    ANDROID(4, "Android");
+    ANDROID(3, "Android"),
+    IOS(4, "IOS");
     
 
     private static Map<Integer, SourceType> map = new HashMap<>();
