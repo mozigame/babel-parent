@@ -158,6 +158,21 @@ import org.apache.commons.logging.LogFactory;
 		return 0;
 
 	}
+	
+	 /**
+     * 获取当前周数
+     * @param pcode
+     * @return
+     */
+    public static int getYearWeek(Long time){
+    	if(time==null){
+    		return 0;
+    	}
+    	Calendar calendar = Calendar.getInstance();
+    	calendar.setFirstDayOfWeek(Calendar.MONDAY); 
+    	calendar.setTimeInMillis(time);
+    	return calendar.get(Calendar.WEEK_OF_YEAR);
+    }
  }
 
 
