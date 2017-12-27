@@ -17,6 +17,7 @@ public class MemberVO implements Serializable{
     private Long platInfoId;
     
     private Long agentId;
+	private Long agentName;
 
     private String ownerInfo;
     
@@ -31,6 +32,7 @@ public class MemberVO implements Serializable{
     private String curType;
     
     private Integer levelId;
+	private Integer levelName;
 
     private Integer status;
 
@@ -119,7 +121,20 @@ public class MemberVO implements Serializable{
 	public void setAgentId(Long agentId) {
 		this.agentId = agentId;
 	}
-    
-    
-  
+
+	public Long getAgentName() {
+		return agentName;
+	}
+
+	public void setAgentName(Long agentName) {
+		this.agentName = agentName;
+	}
+
+	public Integer getLevelName() {
+		return levelName;
+	}
+
+	public void setLevelName(Integer levelName) {
+		this.levelName = levelName;
+	}
 }
