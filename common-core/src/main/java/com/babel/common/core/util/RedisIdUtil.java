@@ -55,6 +55,9 @@ public class RedisIdUtil {
 	 * @return
 	 */
 	public static Long getRedisNextCid(String cidKey, int increment){
+		if(increment==0){
+			increment=1;
+		}
 		Long cid=null;
 		RedisTemplate redisTemplate=RedisUtil.getRedisTemplate();
 		if(redisTemplate!=null){
@@ -69,6 +72,9 @@ public class RedisIdUtil {
 	 * @return
 	 */
 	public static List<Long> getRedisNextCids(String cidKey, int size){
+		if(size==0){
+			size=1;
+		}
 		List<Long> cidList=new ArrayList<>();
 		RedisTemplate redisTemplate=RedisUtil.getRedisTemplate();
 		if(redisTemplate!=null){
