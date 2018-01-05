@@ -10,7 +10,8 @@ public enum UserType {
 
     member(1),  //会员
     agent(2),   //代理
-    plat(3);    //平台商
+    plat(3),    //平台商
+    worker(4);    //工作人员
 
     private int code;
 
