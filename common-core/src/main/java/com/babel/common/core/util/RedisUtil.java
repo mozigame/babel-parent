@@ -241,21 +241,26 @@ public class RedisUtil {
 	
 	private static Map<String, Date> redisKeyDateMap= new ConcurrentHashMap<>();
 	
+	private static Map<String, String> lockMap=new ConcurrentHashMap<>();
 	/**
 	 * 检查间隔时间是否>1s
 	 * @param redisKey
 	 * @return
 	 */
 	public static boolean isRunLimitSecond(String redisKey, int secondLimit){
-		synchronized (redisKey) {
+		if(!lockMap.containsKey(redisKey)){
+			lockMap.put(redisKey, redisKey);
+		}
+		final String redisKeyLock=lockMap.get(redisKey);
+		synchronized (redisKeyLock) {
 			Date now = new Date();
-			Date redisKeyDate=redisKeyDateMap.get(redisKey);
+			Date redisKeyDate=redisKeyDateMap.get(redisKeyLock);
 			if(redisKeyDate==null){
-				redisKeyDateMap.put(redisKey, now);
+				redisKeyDateMap.put(redisKeyLock, now);
 				return false;
 			}
 			if(now.getTime()-redisKeyDate.getTime()<secondLimit*1000){
-				redisKeyDateMap.put(redisKey, now);
+				redisKeyDateMap.put(redisKeyLock, now);
 				return true;
 			}
 		}
@@ -290,7 +295,11 @@ public class RedisUtil {
 			return true;
 		}
 		RedisTemplate redisTemplate = RedisUtil.getRedisTemplate();
-		synchronized (redisKey) {
+		if(!lockMap.containsKey(redisKey)){
+			lockMap.put(redisKey, redisKey);
+		}
+		final String redisKeyLock=lockMap.get(redisKey); 
+		synchronized (redisKeyLock) {
 			Date date=(Date)redisTemplate.boundHashOps("_redisBatch").get(redisKey);
 			Date now = new Date();
 			if(date!=null){

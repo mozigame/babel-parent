@@ -44,6 +44,7 @@ public class TaskExecutorUtils {
 		}
 		return keyName;
 	}
+	private static Map<String, String> lockMap=new ConcurrentHashMap<>();
 	public static TaskExecutor getTaskExecutorInstance(String sysType, Class clazz,  String key, Properties properties){
 		final String keyName=getKeyName(clazz, key);
 		String threadNamePrefix="taskExecutor-"+clazz.getSimpleName();
@@ -57,7 +58,11 @@ public class TaskExecutorUtils {
 //			loadThreadInfoAsync(sysType);//异步更新配置信息
 			return taskExecutor;
 		}
-		synchronized (keyName) {
+		if(!lockMap.containsKey(keyName)){
+			lockMap.put(keyName, keyName);
+		}
+		final String keyNameLock=lockMap.get(keyName); 
+		synchronized (keyNameLock) {
 			taskExecutor=taskExecutorMap.get(keyName);
 			if(taskExecutor==null){
 //				logger.info("-----poolInfoMap="+poolInfoMap+" keyName="+keyName);
