@@ -21,7 +21,8 @@ public enum ChargeType {
     withdrawal_payoff(10007, "撤销派奖"),
     deposit(10008, "转入"),
     withdrawing(10009, "转出"),
-    withdrawal_cancel_fee(10010, "撤单手续费");
+    withdrawal_cancel_fee(10010, "撤单手续费"),
+    cash_back(10011, "返水");
 
     private static Map<Integer, ChargeType> map = new HashMap<>();
 
