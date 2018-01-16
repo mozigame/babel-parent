@@ -23,7 +23,7 @@ public class RedisZsetUtil {
 		}
 	}
 	
-	public static Map<String, Double> getTuples(String redisKey, Long score){
+	public static Map<String, Double> getReverseRangeByScoreWithScores(String redisKey, Long score){
 		if(redisTemplate==null){
 			redisTemplate=RedisUtil.getRedisTemplate();
 		}
