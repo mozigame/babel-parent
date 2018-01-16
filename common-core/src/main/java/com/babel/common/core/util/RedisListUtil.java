@@ -126,12 +126,13 @@ public class RedisListUtil {
 		}
 	}
 	
-	public static void leftPush(final RedisTemplate redisTemplate, final String redisKey, Object object){
+	public static void leftPush(final String redisKey, Object object){
 		if(object==null){
 			return;
 		}
 		
 //		synchronized(redisKey){
+		final RedisTemplate redisTemplate=RedisUtil.getRedisTemplate();
 		redisTemplate.boundListOps(redisKey).leftPush(object);
 //		}
 	}
