@@ -1,5 +1,7 @@
 package com.babel.common.core.util;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
@@ -21,17 +23,21 @@ public class RedisZsetUtil {
 		}
 	}
 	
-	public static Set<TypedTuple<String>> geTuples(String redisKey, Long score){
+	public static Map<String, Double> geTuples(String redisKey, Long score){
 		if(redisTemplate==null){
 			redisTemplate=RedisUtil.getRedisTemplate();
 		}
 		if(redisTemplate!=null){
 			Set<TypedTuple<String>> set=redisTemplate.opsForZSet().reverseRangeByScoreWithScores(redisKey, score, -1);
-			return set;
+			Map<String, Double> map=new HashMap<>();
+			for(TypedTuple<String> tuple:set){
+				map.put(tuple.getValue(), tuple.getScore());
+			}
+			return map;
 		}
 		else{
 			logger.warn("----geTuples--redisTemplate is null");
 		}
-		return null;
+		return new HashMap<>();
 	}
 }
