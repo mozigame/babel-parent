@@ -1,5 +1,8 @@
 package com.babel.common.lottery;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * User: joey
  * Date: 2018/1/16
@@ -11,6 +14,12 @@ public enum RComStatus {
     cancel(3),  //已取消
     hang_up(4); //已挂账
 
+    private static Map<Integer, RComStatus> map = new HashMap<>();
+    static {
+        for (RComStatus obj : RComStatus.values()) {
+            map.put(obj.getCode(), obj);
+        }
+    }
     private int code;
 
     RComStatus(int code) {
@@ -19,5 +28,9 @@ public enum RComStatus {
 
     public int getCode() {
         return code;
+    }
+
+    public static RComStatus parse(int code) {
+        return map.get(code);
     }
 }

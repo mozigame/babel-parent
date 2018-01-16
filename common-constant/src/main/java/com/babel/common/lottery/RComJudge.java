@@ -1,5 +1,8 @@
 package com.babel.common.lottery;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * User: joey
  * Date: 2018/1/16
@@ -11,6 +14,13 @@ public enum RComJudge {
     no_standard(2), //未达标
     reach_standard(3);  //已达资格
 
+    private static Map<Integer, RComJudge> map =new HashMap<>();
+    static {
+        for (RComJudge obj : RComJudge.values()) {
+            map.put(obj.getCode(), obj);
+        }
+    }
+
     private int code;
 
     RComJudge(int code) {
@@ -19,5 +29,9 @@ public enum RComJudge {
 
     public int getCode() {
         return code;
+    }
+
+    public static RComJudge parse(int code) {
+        return map.get(code);
     }
 }
