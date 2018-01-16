@@ -28,7 +28,7 @@ public class RedisZsetUtil {
 			redisTemplate=RedisUtil.getRedisTemplate();
 		}
 		if(redisTemplate!=null){
-			Set<TypedTuple<String>> set=redisTemplate.opsForZSet().reverseRangeByScoreWithScores(redisKey, score, -1);
+			Set<TypedTuple<String>> set=redisTemplate.opsForZSet().reverseRangeByScoreWithScores(redisKey, score, 3516091475392L);
 			Map<String, Double> map=new HashMap<>();
 			for(TypedTuple<String> tuple:set){
 				map.put(tuple.getValue(), tuple.getScore());
