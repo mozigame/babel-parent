@@ -15,8 +15,9 @@ public enum LotteryIds {
     JSQ3_1(5, "快3-官彩"),//quick 3
     JSQ3_2(6, "快3-双面彩"),//quick 3
     BJPK10_1(7, "北京PK10-官彩"),//beijing pk10
-    BJPK10_2(8, "北京PK10-双面彩");//beijing pk10
-//    SIX(6, "六合彩");//six lottery
+    BJPK10_2(8, "北京PK10-双面彩"),//beijing pk10
+    SIX_1(9, "六合彩-官彩"),//six lottery
+    SIX_2(10, "六合彩-双面彩");//six lottery
 	
 
 
