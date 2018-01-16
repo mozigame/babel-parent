@@ -21,12 +21,12 @@ public class RedisZsetUtil {
 		}
 	}
 	
-	public static Set<TypedTuple<String>> geTuples(String redisKey, Long time){
+	public static Set<TypedTuple<String>> geTuples(String redisKey, Long score){
 		if(redisTemplate==null){
 			redisTemplate=RedisUtil.getRedisTemplate();
 		}
 		if(redisTemplate!=null){
-			Set<TypedTuple<String>> set=RedisUtil.getRedisTemplate().opsForZSet().reverseRangeByScoreWithScores(redisKey, time, -1);
+			Set<TypedTuple<String>> set=RedisUtil.getRedisTemplate().opsForZSet().reverseRangeByScoreWithScores(redisKey, score, -1);
 			return set;
 		}
 		else{
