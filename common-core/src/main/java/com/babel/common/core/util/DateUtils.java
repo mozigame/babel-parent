@@ -159,6 +159,20 @@ import org.apache.commons.logging.LogFactory;
 
 	}
 	
+	/**
+     * 功能描述：日期加指定天数
+     * 
+     * @param date Date 日期
+     * @param day int 天数
+     * @return 返回相加后的日期
+     */
+    public static Date addDay(Date date, int day) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.DATE, day);
+        return calendar.getTime();
+    }
+	
 	 /**
      * 获取当前周数
      * @param pcode
