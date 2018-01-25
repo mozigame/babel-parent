@@ -68,4 +68,37 @@ public class MsgSender {
 		EntityUtils.consume(entity);
 		return jsonStr;
 	}
+	
+	public static String sendMessageTelegram(IMsgApi msgApi, String sendFrom, String msgSource) throws Exception{
+		String botId=msgApi.getUid();
+		String chatId= msgApi.getChannel();
+		
+		Map<String, Object> map=new HashMap<>();
+		map.put("chat_id", chatId);
+		map.put("text", sendFrom+":"+msgSource);
+		String data=gson.toJson(map);
+		
+		String characterEncoding="UTF-8";
+		CloseableHttpClient httpclient = HttpClients.createDefault();
+		String url=msgApi.getUrl()+"/bot"+botId+"/sendMessage";
+		HttpPost httpost = new HttpPost(url); // post请求
+		httpost.addHeader("Connection", "keep-alive");
+		httpost.addHeader("Accept", "*/*");
+		httpost.addHeader("Content-Type", "application/json");
+//		httpost.addHeader("Host", "api.mch.weixin.qq.com");
+		httpost.addHeader("Cache-Control", "max-age=0");
+//		httpost.addHeader("User-Agent", "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0) ");
+		httpost.setEntity(new StringEntity(data, characterEncoding));
+		CloseableHttpResponse response = httpclient.execute(httpost);
+		HttpEntity entity = response.getEntity();
+		String jsonStr = EntityUtils.toString(response.getEntity(), characterEncoding);
+//		System.out.println("----------------------------------------");
+//		System.out.println("-----jsonStr="+jsonStr);
+		if(response.getStatusLine().getStatusCode()!=200){
+			logger.error("----wxApi--url="+msgApi.getUrl()+" \ndata="+data+"\njsonStr="+jsonStr);
+		}
+//		System.out.println(response.getStatusLine());
+		EntityUtils.consume(entity);
+		return jsonStr;
+	}
 }
