@@ -36,6 +36,16 @@ public abstract class BaseService<T> implements IBaseService<T> {
     			return this.updateAll(entity);
     		}
     	}
+//    	else if(entity instanceof BaseEntityTimestamp){
+//    		BaseEntityTimestamp dataEntity=(BaseEntityTimestamp)entity;
+//    		if(dataEntity.getCid()==null || dataEntity.getCid().longValue()==0){
+//    			dataEntity.setCid(this.getMapper().selectSeqId(entity));
+//    			return getMapper().insert(entity);
+//    		}
+//    		else{
+//    			return this.updateAll(entity);
+//    		}
+//    	}
     	else{
     		//这个保存后entity中没有cid的值
     		return getMapper().insert(entity);
