@@ -8,7 +8,7 @@ import java.util.Map;
  * created by roachjiang 2017/9/28
  */
 public enum LotteryIds {
-    CQSSC_1(1, "重庆时时彩双面彩"),//shi shi cai
+    CQSSC_1(1, "重庆时时彩"),//shi shi cai
     CQSSC_2(2, "重庆时时彩双面彩"),
     JC11X5_1(3, "江西11选5"),//Eleven select file
     JC11X5_2(4, "江西11选5双面彩"),//Eleven select file
