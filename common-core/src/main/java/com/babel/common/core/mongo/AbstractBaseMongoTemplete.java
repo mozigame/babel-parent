@@ -18,7 +18,8 @@ public class AbstractBaseMongoTemplete implements ApplicationContextAware {
       
     public void setApplicationContext(ApplicationContext applicationContext)  
             throws BeansException {  
-        // TODO Auto-generated method stub  
+        // TODO Auto-generated method stub
+
         MongoTemplate mongoTemplate = applicationContext.getBean("mongoTemplate", MongoTemplate.class);  
         setMongoTemplate(mongoTemplate);  
     }  
