@@ -211,6 +211,9 @@ public class PageVO<T> implements IPageVO<T>, java.io.Serializable {
     }
 
     public int getPageEnd() {
+        if(getRows()==null){
+            return getPageBegin();
+        }
         return getPageBegin() + getRows().size();
     }
 
