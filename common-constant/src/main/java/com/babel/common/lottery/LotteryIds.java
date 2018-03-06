@@ -41,7 +41,12 @@ public enum LotteryIds {
     bc_pk10_1(107, "秒速赛车"),
     bc_pk10_2(108, "秒速赛车双面彩"),
     bc_lhc_1(109, "五分六合彩"),
-    bc_lhc_2(110, "五分六合彩双面彩");
+    bc_lhc_2(110, "五分六合彩双面彩"),
+    bc_ssc_korea_1(111, "韩国1.5分彩"),
+    bc_ssc_korea_2(112, "韩国1.5分彩双面彩"),
+    bc_ssc_tokyo_1(113, "东京1.5分彩"),
+    bc_ssc_tokyo_2(114, "东京1.5分彩双面彩");
+
 
 
     private static Map<Integer, LotteryIds> map = new HashMap<>();
