@@ -59,6 +59,8 @@ public class RequestLogRecord {
      */
     private long responseSize;
 
+    private String sessionId;
+
     public RequestLogRecord() {
     }
 
@@ -153,5 +155,11 @@ public class RequestLogRecord {
         this.requestId = requestId;
     }
 
+    public String getSessionId() {
+        return sessionId;
+    }
 
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
 }
