@@ -151,10 +151,11 @@ public class LogAuditAspect {
 		try {
 			retObj = pjp.proceed();
 			long runTime=System.currentTimeMillis() - time;
-			this.logManager.addLogInfoAsync(methodCode, pointMap, runTime, retObj, request);
+			logger.debug("----addLogInfoAsync----method="+pointMap.get("method")+" runTime="+runTime);
+//			this.logManager.addLogInfoAsync(methodCode, pointMap, runTime, retObj, request);
 		} catch (Exception e) {
 			long runTime=System.currentTimeMillis() - time;
-			this.logManager.addLogErrorAsync(methodCode, pointMap, runTime, e, request);
+//			this.logManager.addLogErrorAsync(methodCode, pointMap, runTime, e, request);
 			throw e;
 		}
 		return retObj;
@@ -187,7 +188,7 @@ public class LogAuditAspect {
 						arg=ObjectToMapUtil.objectToMap(arg);
 					} catch (Exception e) {
 						logger.warn("----getArgs--"+arg+","+e.getMessage());
-						arg=gson.toJson(arg);
+//						arg=gson.toJson(arg);
 					}
 				}
 				
