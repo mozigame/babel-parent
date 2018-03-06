@@ -16,8 +16,8 @@ public enum LotteryIds {
     JSQ3_2(6, "js_k3", LotteryType.Q3.code(), 2, "江苏快3双面彩"),//quick 3
     BJPK10_1(7, "bj_pk10", LotteryType.BJPK10.code(), 1, "北京PK10"),//beijing pk10
     BJPK10_2(8, "bj_pk10", LotteryType.BJPK10.code(), 2, "北京PK10双面彩"),//beijing pk10
-    LHC(9, "xg_lhc", LotteryType.SIX.code(), 1,  "香港六合彩"),
-    XG_LHC(10, "xg_lhc", LotteryType.SIX.code(), 2, "香港六合彩双面彩"),
+    XG_LHC_1(9, "xg_lhc", LotteryType.SIX.code(), 1,  "香港六合彩"),
+    XG_LHC_2(10, "xg_lhc", LotteryType.SIX.code(), 2, "香港六合彩双面彩"),
     tj_ssc_1(11, "tj_ssc", LotteryType.SSC.code(), 1, "天津时时彩"),
     tj_ssc_2(12, "tj_ssc", LotteryType.SSC.code(), 2, "天津时时彩双面彩"),
     xj_ssc_1(13, "xj_ssc", LotteryType.SSC.code(), 1, "新疆时时彩"),
