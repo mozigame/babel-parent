@@ -32,6 +32,10 @@ public enum LotteryIds {
     hub_k3_2(22, "hub_k3", LotteryType.Q3.code(), 2, "湖北快3双面彩"),
     luckship_1(23, "luckship", LotteryType.BJPK10.code(), 1, "幸运飞艇"),
     luckship_2(24, "luckship", LotteryType.BJPK10.code(), 2, "幸运飞艇双面彩"),
+    ssc_beijing_1(25, "ssc_beijing", LotteryType.SSC.code(), 1, "北京时时彩"),
+    ssc_beijing_2(26, "ssc_beijing", LotteryType.SSC.code(), 2, "北京时时彩双面彩"),
+    ssc_taiwan_1(27, "ssc_taiwan", LotteryType.SSC.code(), 1, "台湾5分彩"),
+    ssc_taiwan_2(28, "ssc_taiwan", LotteryType.SSC.code(), 2, "台湾5分彩双面彩"),
     bc_ssc_1(101, "bc_ssc", LotteryType.SSC.code(), 1, "秒速时时彩"),
     bc_ssc_2(102, "bc_ssc", LotteryType.SSC.code(), 2, "秒速时时彩双面彩"),
     bc_11x5_1(103, "bc_11x5", LotteryType.ESF.code(), 1, "秒速11选5"),
@@ -45,11 +49,7 @@ public enum LotteryIds {
     bc_ssc_korea_1(111, "bc_ssc_korea", LotteryType.SSC.code(), 1, "韩国1.5分彩"),
     bc_ssc_korea_2(112, "bc_ssc_korea", LotteryType.SSC.code(), 2, "韩国1.5分彩双面彩"),
     bc_ssc_tokyo_1(113, "bc_ssc_tokyo", LotteryType.SSC.code(), 1, "东京1.5分彩"),
-    bc_ssc_tokyo_2(114, "bc_ssc_tokyo", LotteryType.SSC.code(), 2, "东京1.5分彩双面彩"),
-    bc_ssc_beijing_1(115, "bc_ssc_beijing", LotteryType.SSC.code(), 1, "北京时时彩"),
-    bc_ssc_beijing_2(116, "bc_ssc_beijing", LotteryType.SSC.code(), 2, "北京时时彩双面彩"),
-    bc_ssc_taiwan_1(117, "bc_ssc_taiwan", LotteryType.SSC.code(), 1, "台湾5分彩"),
-    bc_ssc_taiwan_2(118, "bc_ssc_taiwan", LotteryType.SSC.code(), 2, "台湾5分彩双面彩");
+    bc_ssc_tokyo_2(114, "bc_ssc_tokyo", LotteryType.SSC.code(), 2, "东京1.5分彩双面彩");
 
 
 
