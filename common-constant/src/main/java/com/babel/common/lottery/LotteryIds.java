@@ -53,8 +53,9 @@ public enum LotteryIds {
     bc_ssc_korea_1(111, "bc_ssc_korea", LotteryType.SSC.code(), 1, "韩国1.5分彩"),
     bc_ssc_korea_2(112, "bc_ssc_korea", LotteryType.SSC.code(), 2, "韩国1.5分彩双面彩"),
     bc_ssc_tokyo_1(113, "bc_ssc_tokyo", LotteryType.SSC.code(), 1, "东京1.5分彩"),
-    bc_ssc_tokyo_2(114, "bc_ssc_tokyo", LotteryType.SSC.code(), 2, "东京1.5分彩双面彩");
-
+    bc_ssc_tokyo_2(114, "bc_ssc_tokyo", LotteryType.SSC.code(), 2, "东京1.5分彩双面彩"),
+    bc_ssc_chongqing_1(115, "bc_ssc_chongqing", LotteryType.SSC.code(), 1, "重庆秒秒彩"),
+    bc_ssc_chongqing_2(116, "bc_ssc_chongqing", LotteryType.SSC.code(), 2, "重庆秒秒彩双面彩");
 
 
     private static Map<Integer, LotteryIds> map = new HashMap<>();
