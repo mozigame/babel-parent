@@ -40,4 +40,17 @@ public class RedisZsetUtil {
 		}
 		return new HashMap<>();
 	}
+
+
+	/**
+	 * 清理数据
+	 * @param redisKey
+	 * @param key
+	 */
+	public static void removeByKey(String redisKey, Object ... key){
+		if(redisTemplate==null){
+			redisTemplate=RedisUtil.getRedisTemplate();
+		}
+		redisTemplate.opsForZSet().remove(redisKey, key);
+	}
 }
