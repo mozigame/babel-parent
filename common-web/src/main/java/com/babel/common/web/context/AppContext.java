@@ -9,6 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
+import com.babel.common.core.util.CommUtil;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.InvalidSessionException;
@@ -115,16 +116,19 @@ public class AppContext {
 	}
 	
 	public static String getIpAddr(HttpServletRequest request) {
-		String ip = request.getHeader("x-forwarded-for");
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+		String ip = request.getHeader("x-real-ip");
+		if (CommUtil.isEmpty(ip)|| "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("x-forwarded-for");
+		}
+		if (CommUtil.isEmpty(ip) || "unknown".equalsIgnoreCase(ip)) {
 			ip = request.getHeader("Proxy-Client-IP");
 		}
 
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+		if (CommUtil.isEmpty(ip) || "unknown".equalsIgnoreCase(ip)) {
 			ip = request.getHeader("WL-Proxy-Client-IP");
 		}
 
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+		if (CommUtil.isEmpty(ip) || "unknown".equalsIgnoreCase(ip)) {
 			ip = request.getRemoteAddr();
 		}
 		if("127.0.0.1".equals(ip) ||"0:0:0:0:0:0:0:1".equals(ip)){
