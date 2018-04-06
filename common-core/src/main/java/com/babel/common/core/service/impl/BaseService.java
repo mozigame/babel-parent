@@ -114,7 +114,7 @@ public abstract class BaseService<T> implements IBaseService<T> {
     }
     
     public Integer deleteVirtual(T entity) throws Exception{
-    	if(entity instanceof BaseEntitySimple||entity instanceof BaseEntityTimestamp){
+    	if(entity instanceof BaseEntitySimple) {
     		BaseEntitySimple dataEntity=(BaseEntitySimple)entity;
     		if(dataEntity.getCid()==null||dataEntity.getCid().intValue()==0){
     			throw new Exception("PrimaryKey cid is empty");
@@ -123,6 +123,15 @@ public abstract class BaseService<T> implements IBaseService<T> {
     		dataEntity.initUpdate();
     		return this.getMapper().updateByPrimaryKeySelective(entity);
     	}
+    	else if(entity instanceof BaseEntityTimestamp){
+			BaseEntityTimestamp dataEntity=(BaseEntityTimestamp)entity;
+			if(dataEntity.getCid()==null||dataEntity.getCid().intValue()==0){
+				throw new Exception("PrimaryKey cid is empty");
+			}
+			dataEntity.setIfDel(1);
+			dataEntity.initUpdate();
+			return this.getMapper().updateByPrimaryKeySelective(entity);
+		}
     	else{
     		throw new Exception("Invalid entity");
     	}
