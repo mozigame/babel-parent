@@ -139,7 +139,8 @@ public class RedisConstant {
 	public final static String BET_USER_ORDER_PLAY="_bet_userOrderPlay";
 	
 	public final static String BET_USER_ORDER_PLAY_MAP="_bet_userOrderPlayMap";
-	
+
+	public final static String BET_TIMELY_ORDER_MAP="_bet_timely_OrderMap";
 //	/**
 //	 * 存member的orderId
 //	 */
@@ -203,7 +204,26 @@ public class RedisConstant {
 	public final static String getKeyOperStatus(Long lotteryId, Long pcode){
 		return BET_ORDER_STATUS+"_"+lotteryId+"_"+pcode;
 	}
-	
+
+	/**
+	 * 用户当期注单状态 map
+	 * 有效期1小时
+	 * @param pcode
+	 * @return
+	 */
+	public final static String getKeyTimelyStatus(Long lotteryId, Long pcode){
+		return BET_TIMELY_ORDER_MAP+"_"+"key_"+lotteryId+"_"+pcode;
+	}
+	/**
+	 * 用户当期注单状态 map
+	 * 有效期1小时
+	 * @param pcode
+	 * @return
+	 */
+	public final static String getTimelyOrderMap(Long lotteryId, Long pcode){
+		return BET_TIMELY_ORDER_MAP+"_"+lotteryId+"_"+pcode;
+	}
+
 	/**
 	 * 类型map
 	 * 下注成功缓存map
