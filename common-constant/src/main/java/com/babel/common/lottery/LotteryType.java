@@ -13,7 +13,9 @@ public enum LotteryType {
     Q3(3, "快3"),//quick 3
     BJPK10(4, "北京PK10"),//beijing pk10
     SIX(6, "六合彩"),//six lottery
-    PC_EGG(7, "PC蛋蛋");
+    PC_EGG(7, "PC蛋蛋"),
+    Q8(8, "快8"),
+    Q10(10, "快10");
 	
 
 
