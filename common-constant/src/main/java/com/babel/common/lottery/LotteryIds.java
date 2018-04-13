@@ -40,7 +40,9 @@ public enum LotteryIds {
     pc_dd_2(30, "pc_dd", LotteryType.PC_EGG.code(), 2, "幸运28双面彩"),
     qq_ffc_1(31, "qq_ffc", LotteryType.SSC.code(), 1, "QQ分分彩"),
     qq_ffc_2(32, "qq_ffc", LotteryType.SSC.code(), 2, "QQ分分彩双面彩"),
-    bj_q8_2(34, "bj_q8", LotteryType.Q8.code(), 2, "北京快8双面彩"),
+    az_ssc_1(34, "az_ssc", LotteryType.Q8.code(), 2, "北京快8双面彩"),
+    az_ssc_2(35, "az_ssc", LotteryType.SSC.code(), 2, "澳洲三分彩"),
+    bj_q8_2(36, "bj_q8", LotteryType.SSC.code(), 2, "澳洲三分彩双面彩"),
     bc_ssc_1(101, "bc_ssc", LotteryType.SSC.code(), 1, "秒速时时彩"),
     bc_ssc_2(102, "bc_ssc", LotteryType.SSC.code(), 2, "秒速时时彩双面彩"),
     bc_11x5_1(103, "bc_11x5", LotteryType.ESF.code(), 1, "秒速11选5"),
@@ -56,8 +58,9 @@ public enum LotteryIds {
     bc_ssc_tokyo_1(113, "bc_ssc_tokyo", LotteryType.SSC.code(), 1, "东京1.5分彩"),
     bc_ssc_tokyo_2(114, "bc_ssc_tokyo", LotteryType.SSC.code(), 2, "东京1.5分彩双面彩"),
     bc_ssc_chongqing_1(115, "bc_ssc_chongqing", LotteryType.SSC.code(), 1, "重庆秒秒彩"),
-    bc_ssc_chongqing_2(116, "bc_ssc_chongqing", LotteryType.SSC.code(), 2, "重庆秒秒彩双面彩");
-
+    bc_ssc_chongqing_2(116, "bc_ssc_chongqing", LotteryType.SSC.code(), 2, "重庆秒秒彩双面彩"),
+    bc_ssc_saiche_1(117, "bc_ssc_saiche", LotteryType.SSC.code(), 1, "赛车秒秒彩"),
+    bc_ssc_saiche_2(118, "bc_ssc_saiche", LotteryType.SSC.code(), 2, "赛车秒秒彩双面彩");
 
     private static Map<Integer, LotteryIds> map = new HashMap<>();
 
