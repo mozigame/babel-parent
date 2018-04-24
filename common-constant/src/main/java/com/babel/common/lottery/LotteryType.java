@@ -15,7 +15,8 @@ public enum LotteryType {
     SIX(6, "六合彩"),//six lottery
     PC_EGG(7, "PC蛋蛋"),
     Q8(8, "快8"),
-    Q10(10, "快10");
+    Q10_GD(10, "广东快10"),
+    Q10_GX(12, "广西快10");
 	
 
 

@@ -45,6 +45,8 @@ public enum LotteryIds {
     az_ssc_2(36, "az_ssc", LotteryType.SSC.code(), 2, "澳洲3分彩双面彩"),
     tw_q8_1(41, "tw_q8", LotteryType.Q8.code(), 2, "台湾宾果"),
     tw_q8_2(42, "tw_q8", LotteryType.Q8.code(), 2, "台湾宾果双面彩"),
+    gx_q10_2(38, "gx_q10", LotteryType.Q10_GX.code(), 2, "广西快10双面彩"),
+    gd_q10_2(40, "gd_q10", LotteryType.Q10_GD.code(), 2, "广东快10双面彩"),
     bc_ssc_1(101, "bc_ssc", LotteryType.SSC.code(), 1, "秒速时时彩"),
     bc_ssc_2(102, "bc_ssc", LotteryType.SSC.code(), 2, "秒速时时彩双面彩"),
     bc_11x5_1(103, "bc_11x5", LotteryType.ESF.code(), 1, "秒速11选5"),
