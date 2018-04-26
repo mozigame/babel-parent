@@ -68,7 +68,7 @@ public enum LotteryIds {
     bc_pk10_saiche_1(117, "bc_pk10_saiche", LotteryType.BJPK10.code(), 1, "赛车秒秒彩"),
     bc_pk10_saiche_2(118, "bc_pk10_saiche", LotteryType.BJPK10.code(), 2, "赛车秒秒彩双面彩"),
     bc_ssc_az1(119, "bc_ssc_az", LotteryType.SSC.code(), 1, "秒速3分彩"),
-    bc_ssc_az2(120, "bc_ssc_az", LotteryType.SSC.code(), 2, "秒速3分彩");
+    bc_ssc_az2(120, "bc_ssc_az", LotteryType.SSC.code(), 2, "秒速3分彩双面彩");
 
     private static Map<Integer, LotteryIds> map = new HashMap<>();
 
